@@ -21,7 +21,7 @@ class ListSeq {
     bool resize();
 
     // imprime conteúdo da lista
-    bool print();
+    void print();
 
     // retorna posição do elemento ou -1
     int find(int elem);
