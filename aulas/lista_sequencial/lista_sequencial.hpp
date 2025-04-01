@@ -3,6 +3,7 @@
 
 using namespace std; //a.k.a.: from xyz import *
 
+#pragma once
 
 class ListSeq {
     public:
@@ -37,18 +38,17 @@ class ListSeq {
 
     // Operações de Modificação
     // insere elemento no final
-    bool add(int elem);
+    void add(int elem);
 
     // remove elemento do final
-    bool remove();
+    void remove();
 
     // insere elemento na posição especificada
     void insert(int elem, int pos);
 
     // remove elemento na posição especificada
-    bool removeAt(int pos);
+    void removeAt(int pos);
 
     // insere elemento em ordem crescente
-    bool addSorted(int elem);
-
+    void addSorted(int elem);
 };

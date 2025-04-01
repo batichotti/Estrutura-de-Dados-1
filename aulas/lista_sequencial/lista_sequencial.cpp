@@ -22,19 +22,30 @@ void  ListSeq::resize(){
     data = _data;    
 };
 
-bool ListSeq::add(int elem){
+void ListSeq::add(int elem){
     if (size < capacity){
         data[size++] = elem;
-        return true;
-    } else {
-        return false;
-    }    
+    }
 };    
+
+void ListSeq::remove(){
+    if(!isEmpty()){
+        size--;
+    }
+};
+
+void ListSeq::removeAt(int pos) {
+    if (pos < size) {
+        for (int i = pos; i < size - 1; i++) {
+            data[i] = data[i + 1];
+        }
+        size--;
+    }
+};
 
 bool ListSeq::isEmpty(){
     return (size == 0);
 };
-
 
 bool ListSeq::isFull(){
     return (size == capacity);
@@ -46,3 +57,19 @@ void ListSeq::print(){
     }
     cout << endl;
 };
+
+int ListSeq::find(int elem){
+    for (int i = 0; i < size; i++){
+        if(elem == data[i]){
+            return i;
+        }
+    }
+};
+
+int ListSeq::get(int pos){
+    return data[pos];
+};
+
+void ListSeq::insert(int elem, int pos){};
+
+void ListSeq::addSorted(int elem){};
