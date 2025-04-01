@@ -18,7 +18,7 @@ class ListSeq {
     void destroy();
 
     // realoca vetor
-    bool resize();
+    void resize();
 
     // imprime conteúdo da lista
     void print();

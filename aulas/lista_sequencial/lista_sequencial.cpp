@@ -10,17 +10,16 @@ ListSeq::ListSeq(int _capacity){
 };
 
 void ListSeq::destroy(){
-
+    delete[] data;
 };
 
-bool ListSeq::resize(){
+void  ListSeq::resize(){
     int* _data = new int[++capacity];
     for(int i = 0; i < size;i++){
         _data[i] = data[i];
     }
     delete[] data;
-    data = _data;
-    return true;
+    data = _data;    
 };
 
 bool ListSeq::add(int elem){
