@@ -2,7 +2,7 @@
 CC = g++
 CFLAGS = -Wall -std=c++17
 TARGET = main.exe
-SRCS = list_seq_main.cpp list_seq.cpp
+SRCS = lista_sequencial_main.cpp lista_sequencial.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(TARGET)

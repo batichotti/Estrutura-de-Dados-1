@@ -1,5 +1,4 @@
 #include "lista_sequencial.hpp"
-#include "lista_sequencial.cpp"
 
 int main() {
 	ListSeq ls(5);

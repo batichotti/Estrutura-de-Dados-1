@@ -64,12 +64,17 @@ int ListSeq::find(int elem){
             return i;
         }
     }
+    return -1;
 };
 
 int ListSeq::get(int pos){
     return data[pos];
 };
 
-void ListSeq::insert(int elem, int pos){};
+void ListSeq::insert(int elem, int pos){
+    
+};
 
-void ListSeq::addSorted(int elem){};
+void ListSeq::addSorted(int elem){
+
+};
