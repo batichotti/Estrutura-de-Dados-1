@@ -88,5 +88,10 @@ void ListSeq::addSorted(int elem){
     if (isFull()) {
         resize();
     }
-    
+    for (int i = 0; i < size-1; i++){
+        if (elem < data[i]){
+            insert(elem, i);
+            break;
+        }
+    }
 }
