@@ -88,4 +88,5 @@ void ListSeq::addSorted(int elem){
     if (isFull()) {
         resize();
     }
+    
 }
