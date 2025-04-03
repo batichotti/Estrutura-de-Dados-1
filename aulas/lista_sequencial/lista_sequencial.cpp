@@ -73,7 +73,7 @@ int ListSeq::get(int pos){
 
 void ListSeq::insert(int elem, int pos){
     if (pos <= size-1) {
-        if (size-1 == capacity) {
+        if (isFull()) {
             resize();
         }
         for (int i = size; i > pos; i--) {
@@ -85,5 +85,7 @@ void ListSeq::insert(int elem, int pos){
 }
 
 void ListSeq::addSorted(int elem){
-    
+    if (isFull()) {
+        resize();
+    }
 }
