@@ -7,11 +7,11 @@ using namespace std; //a.k.a.: from xyz import *
 ListSeq::ListSeq(int _capacity){
     data = new int[_capacity];
     capacity = _capacity;
-};
+}
 
 void ListSeq::destroy(){
     delete[] data;
-};
+}
 
 void  ListSeq::resize(){
     int* _data = new int[++capacity];
@@ -20,19 +20,19 @@ void  ListSeq::resize(){
     }
     delete[] data;
     data = _data;    
-};
+}
 
 void ListSeq::add(int elem){
     if (size < capacity){
         data[size++] = elem;
     }
-};    
+}
 
 void ListSeq::remove(){
     if(!isEmpty()){
         size--;
     }
-};
+}
 
 void ListSeq::removeAt(int pos) {
     if (pos < size) {
@@ -41,22 +41,22 @@ void ListSeq::removeAt(int pos) {
         }
         size--;
     }
-};
+}
 
 bool ListSeq::isEmpty(){
     return (size == 0);
-};
+}
 
 bool ListSeq::isFull(){
     return (size == capacity);
-};
+}
 
 void ListSeq::print(){
     for (int i=0; i<size; i++){
         cout << data[i] << " ";
     }
     cout << endl;
-};
+}
 
 int ListSeq::find(int elem){
     for (int i = 0; i < size; i++){
@@ -65,16 +65,25 @@ int ListSeq::find(int elem){
         }
     }
     return -1;
-};
+}
 
 int ListSeq::get(int pos){
     return data[pos];
-};
+}
 
 void ListSeq::insert(int elem, int pos){
-    
-};
+    if (pos <= size-1) {
+        if (size-1 == capacity) {
+            resize();
+        }
+        for (int i = size; i > pos; i--) {
+            data[i] = data[i - 1];
+        }
+        data[pos] = elem;
+        size++;
+    }
+}
 
 void ListSeq::addSorted(int elem){
-
-};
+    
+}
