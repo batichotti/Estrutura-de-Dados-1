@@ -1,8 +1,3 @@
-#include <iostream>
-#include <algorithm>
-
-using namespace std; //a.k.a.: from xyz import *
-
 #pragma once
 
 class ListSeq {
