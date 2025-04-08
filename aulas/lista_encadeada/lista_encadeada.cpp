@@ -15,7 +15,7 @@ bool LinkedList::push_front(int key) {
     if (!node) return false;
 
     node->next = this->head;
-    this->head = node->next;
+    this->head = node;
     return true;
 }
 
