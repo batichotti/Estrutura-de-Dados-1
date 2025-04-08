@@ -6,11 +6,17 @@ using namespace std;
 
 LinkedList::LinkedList() {
     this->head = nullptr;
-    this->tail = nullptr;
+    // this->tail = nullptr;
 }
 
 LinkedList::~LinkedList() {
-
+    Node* node = this->head;
+    while (node) {
+        Node* next = node->next;
+        delete node;
+        node = next;
+    }
+    this->head = nullptr;
 }
 
 bool LinkedList::push_front(int key) {
@@ -32,7 +38,12 @@ bool LinkedList::pop_front() {
 }
 
 int LinkedList::get(int pos) {
-    return -1;
+    if (pos > size()) return -1;
+    Node* node = this->head;
+    for (int i = 0; i < pos; i++){
+        node = node->next;
+    }
+    return node->key;
 }
 
 bool LinkedList::equals(LinkedList* other){
@@ -80,15 +91,15 @@ void LinkedList::push_back(int key) {
 bool LinkedList::pop_back() {
     return false;
 }
-
 Node* LinkedList::find(int key) {
     Node* node = this->head;
-    for (int i = 0; i < size(); i++){
-        if (node->key == key){
+    while (node) {
+        if (node->key == key) {
             return node;
         }
         node = node->next;
     }
+    return nullptr;
 }
 
 bool LinkedList::insert_after(int key, Node* pos) {
@@ -102,13 +113,16 @@ bool LinkedList::remove(int key) {
 }
 
 bool LinkedList::insert(int key, int pos) {
-    if (this->size() > pos) return false;
+    if (pos > this->size() || pos < 0) return false;
+    if (pos == 0) {
+        return this->push_front(key);
+    }
     Node* node = this->head;
-    for (int i = 0; i <= pos; i++){
+    for (int i = 0; i < pos - 1; i++) {
         node = node->next;
     }
     Node* novo = new Node{key, node->next};
-    node->next = node;
+    node->next = novo;
     return true;
 }
 

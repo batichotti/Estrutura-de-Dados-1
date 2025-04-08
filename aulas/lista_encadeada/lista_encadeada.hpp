@@ -8,7 +8,7 @@ class Node {
 class LinkedList { 
         private:
         Node* head; // Primeiro elemento da árvore
-        Node* tail; // Último elemento da árvore
+        // Node* tail; // Último elemento da árvore
     public:
         LinkedList(); // Método Construtor
         ~LinkedList(); // Método Destrutor

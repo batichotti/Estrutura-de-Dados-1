@@ -37,5 +37,13 @@ int main() {
         cout << "Element 30 not found." << endl;
     }
 
+    cout << "Getting element at position 2..." << endl;
+    int value = list.get(2);
+    if (value != -1) {
+        cout << "Element at position 2: " << value << endl;
+    } else {
+        cout << "Invalid position." << endl;
+    }
+
     return 0;
 }
