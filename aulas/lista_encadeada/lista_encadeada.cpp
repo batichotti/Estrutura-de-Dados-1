@@ -81,16 +81,26 @@ int LinkedList::size() {
 }
 
 bool LinkedList::empty() {
+    if(!this->head) return true;
     return false;
 }
 
 void LinkedList::push_back(int key) {
-
+    Node* node = this->head;
+    while (node) {
+        node = node->next;
+    }
+    Node* new_node = new Node{key, nullptr};
+    node->next = new_node;
 }
 
 bool LinkedList::pop_back() {
-    return false;
+    if (!this->head) return false;
+
+    
+    return true;
 }
+
 Node* LinkedList::find(int key) {
     Node* node = this->head;
     while (node) {
@@ -109,14 +119,34 @@ bool LinkedList::insert_after(int key, Node* pos) {
 }
 
 bool LinkedList::remove(int key) {
+    Node* node = this->head;
+
+    if (node && node->key == key) {
+        this->head = node->next;
+        delete node;
+        return true;
+    }
+
+    while (node && node->next) {
+        if (node->next->key == key) {
+            Node* to_delete = node->next;
+            node->next = node->next->next;
+            delete to_delete;
+            return true;
+        }
+        node = node->next;
+    }
+
     return false;
 }
 
 bool LinkedList::insert(int key, int pos) {
     if (pos > this->size() || pos < 0) return false;
+
     if (pos == 0) {
         return this->push_front(key);
     }
+
     Node* node = this->head;
     for (int i = 0; i < pos - 1; i++) {
         node = node->next;
@@ -127,6 +157,8 @@ bool LinkedList::insert(int key, int pos) {
 }
 
 bool LinkedList::removeAt(int pos) {
+    if (pos > this->size() || pos < 0) return false;
+    
     return false;
 }
 

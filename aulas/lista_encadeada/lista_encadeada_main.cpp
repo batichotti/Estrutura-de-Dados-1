@@ -45,5 +45,8 @@ int main() {
         cout << "Invalid position." << endl;
     }
 
+    list.remove(30);
+    list.print();
+
     return 0;
 }
