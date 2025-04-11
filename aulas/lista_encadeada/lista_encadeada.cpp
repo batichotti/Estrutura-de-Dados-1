@@ -150,9 +150,7 @@ bool LinkedList::remove(int key) {
 bool LinkedList::insert(int key, int pos) {
     if (pos > this->size() || pos < 0) return false;
 
-    if (pos == 0) {
-        return this->push_front(key);
-    }
+    if (pos == 0) return this->push_front(key);
 
     Node* node = this->head;
     for (int i = 0; i < pos - 1; i++) {
