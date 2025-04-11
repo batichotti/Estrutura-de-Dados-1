@@ -159,9 +159,35 @@ bool LinkedList::insert(int key, int pos) {
 bool LinkedList::removeAt(int pos) {
     if (pos > this->size() || pos < 0) return false;
     
-    return false;
+    Node* node = this->head;
+    for (int i= 0; i < pos-1;i++){
+        node = node->next;
+    }
+    Node* to_delete = node->next;
+    node->next = to_delete->next;
+    delete to_delete;
+
+    return true;
 }
 
 bool LinkedList::insert_sorted(int key) {
-    return false;
+    if (this->head->key > key){
+        Node* new_node = new Node{key, this->head};
+        this->head = new_node;
+        return true;
+    }
+    
+
+    Node* node = this->head;
+
+    while (node){
+        if (node->key > key){
+            Node* new_node = new Node{key, node};
+            node->next = new_node;
+            return true;
+        }
+    }
+    Node* new_node = new Node{key, node};
+    node->next = new_node;
+    return true;
 }
