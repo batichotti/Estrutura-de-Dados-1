@@ -153,9 +153,9 @@ bool LinkedList::insert(int key, int pos) {
     if (pos == 0) return this->push_front(key);
 
     Node* node = this->head;
-    for (int i = 0; i < pos - 1; i++) {
-        node = node->next;
-    }
+
+    for (int i = 0; i < pos-1; i++) node = node->next;
+
     Node* novo = new Node{key, node->next};
     node->next = novo;
     return true;
