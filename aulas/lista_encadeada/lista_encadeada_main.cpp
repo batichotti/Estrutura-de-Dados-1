@@ -47,6 +47,10 @@ int main() {
 
     list.remove(30);
     list.print();
+    list.removeAt(3);
+    list.print();
+    list.insert_sorted(44);
+    list.print();
 
     return 0;
 }
