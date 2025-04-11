@@ -49,7 +49,9 @@ int main() {
     list.print();
     list.removeAt(3);
     list.print();
-    list.insert_sorted(44);
+    list.push_back(80);
+    list.print();
+    list.insert_sorted(79);
     list.print();
 
     return 0;

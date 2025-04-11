@@ -86,18 +86,25 @@ bool LinkedList::empty() {
 }
 
 void LinkedList::push_back(int key) {
+    if (!this->head) return;
     Node* node = this->head;
-    while (node) {
+    Node* new_node = new Node{key, nullptr};
+
+    while (node && node->next) {
         node = node->next;
     }
-    Node* new_node = new Node{key, nullptr};
     node->next = new_node;
 }
 
 bool LinkedList::pop_back() {
     if (!this->head) return false;
+    Node* node = this->head;
 
-    
+    while (node && node->next) {
+        node = node->next;
+    }
+    delete node->next;
+    node->next = nullptr;
     return true;
 }
 
@@ -177,7 +184,6 @@ bool LinkedList::insert_sorted(int key) {
         return true;
     }
     
-
     Node* node = this->head;
 
     while (node){
