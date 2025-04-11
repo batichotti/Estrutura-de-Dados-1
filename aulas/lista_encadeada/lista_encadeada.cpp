@@ -178,22 +178,18 @@ bool LinkedList::removeAt(int pos) {
 }
 
 bool LinkedList::insert_sorted(int key) {
-    if (this->head->key > key){
+    if (!this->head || this->head->key > key) {
         Node* new_node = new Node{key, this->head};
         this->head = new_node;
         return true;
     }
-    
-    Node* node = this->head;
 
-    while (node){
-        if (node->key > key){
-            Node* new_node = new Node{key, node};
-            node->next = new_node;
-            return true;
-        }
+    Node* node = this->head;
+    while (node->next && node->next->key < key) {
+        node = node->next;
     }
-    Node* new_node = new Node{key, node};
+
+    Node* new_node = new Node{key, node->next};
     node->next = new_node;
     return true;
 }
