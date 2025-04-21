@@ -5,13 +5,13 @@ class Node {
         Node* next;
 };
 
-class LinkedList { 
-        private:
+class CircleList { // Lista Duplamente Encadeada
+    private:
         Node* head; // Primeiro elemento da árvore
-        // Node* tail; // Último elemento da árvore
+        Node* tail; // Último elemento da árvore
     public:
-        LinkedList(); // Método Construtor
-        ~LinkedList(); // Método Destrutor
+        CircleList(); // Método Construtor
+        ~CircleList(); // Método Destrutor
         bool push_front(int key); // Coloca no começo
         bool pop_front(); // Destrói o primeiro
         int get(int pos); // Obtém no enésimo nó
@@ -27,5 +27,5 @@ class LinkedList {
         bool removeAt(int pos); // Remove na posição
         bool remove(int key); // Remove a primeira aparição do valor
         bool insert_sorted(int key); // Insere ordenado
-        bool equals(LinkedList* other); // Compara duas listas
+        bool equals(CircleList* other); // Compara duas listas
 };
