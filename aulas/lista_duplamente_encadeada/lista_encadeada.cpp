@@ -6,6 +6,7 @@ using namespace std;
 
 DoubleList::DoubleList() {
     this->head = nullptr;
+    this->tail = nullptr;
 }
 
 DoubleList::~DoubleList() {
