@@ -9,12 +9,13 @@ int main() {
     list.push_front(9);
     list.push_front(7);
     list.push_front(3);
-    list.pop_back();
-
+    
     list.print();
-
+    
     list.insert(8, 2);
     list.push_back(8);
+    list.pop_back();
+    list.remove(9);
     list.print();
 
     return 0;

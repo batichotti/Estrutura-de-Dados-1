@@ -85,8 +85,8 @@ bool LinkedList::empty() {
     return false;
 }
 
-void LinkedList::push_back(int key) {
-    if (!this->head) return;
+bool LinkedList::push_back(int key) {
+    if (!this->head) return false;
     Node* node = this->head;
     Node* new_node = new Node{key, nullptr};
 
@@ -94,6 +94,7 @@ void LinkedList::push_back(int key) {
         node = node->next;
     }
     node->next = new_node;
+    return true;
 }
 
 bool LinkedList::pop_back() {
@@ -151,6 +152,8 @@ bool LinkedList::insert(int key, int pos) {
     if (pos > this->size() || pos < 0) return false;
 
     if (pos == 0) return this->push_front(key);
+
+    if (pos == size()) return this->push_back(key);
 
     Node* node = this->head;
 

@@ -19,7 +19,7 @@ DoubleList::~DoubleList() {
 }
 
 bool DoubleList::push_front(int key) {
-    Node* node = new Node{key, this->head, nullptr};
+    Node* node = new Node{key, nullptr, nullptr};
     if (!node) return false;
     this->head = node;
     if (node->next)
@@ -131,6 +131,9 @@ bool DoubleList::insert_after(int key, Node* pos) {
     if (!pos) return false;
     Node* node = new Node{key, pos->next, pos};
     pos->next = node;
+    if (this->tail == pos){
+        this->tail = pos->next;
+    }
     return true;
 }
 
@@ -140,6 +143,9 @@ bool DoubleList::remove(int key) {
     if (this->head->key == key) {
         Node* to_delete = this->head;
         this->head = this->head->next;
+        if (!this->head->next){
+            this->tail = this->head;
+        }
         delete to_delete;
         return true;
     }
@@ -148,13 +154,11 @@ bool DoubleList::remove(int key) {
     while (node->next) {
         if (node->next->key == key) {
             Node* to_delete = node->next;
-            node->next = node->next->next;
-            delete to_delete;
+           /////////////////////////////////////////////////////////////////////////
             return true;
         }
         node = node->next;
     }
-
     return false;
 }
 
@@ -165,13 +169,19 @@ bool DoubleList::insert(int key, int pos) {
         return this->push_front(key);
     }
 
+    if (pos == this->size()){
+        return this-> push_back(key);
+    }
+
     Node* node = this->head;
     for (int i = 0; i < pos - 1; i++) {
         node = node->next;
     }
 
-    Node* new_node = new Node{key, node->next};
+    Node* new_node = new Node{key, node->next, node};
     node->next = new_node;
+    new_node->next->prev = new_node;
+
     return true;
 }
 
