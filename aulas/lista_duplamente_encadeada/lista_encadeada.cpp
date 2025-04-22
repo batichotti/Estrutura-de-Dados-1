@@ -19,7 +19,7 @@ DoubleList::~DoubleList() {
 }
 
 bool DoubleList::push_front(int key) {
-    Node* node = new Node{key, this->head};
+    Node* node = new Node{key, this->head, nullptr};
     if (!node) return false;
     this->head = node;
     if (node->next)
@@ -63,11 +63,12 @@ bool DoubleList::equals(DoubleList* other) {
 
 void DoubleList::print() {
     Node* node = this->head;
+    cout << "|| head -> ";
     while (node) {
-        cout << node->key << "->";
+        cout << node->key << " <-> ";
         node = node->next;
     }
-    cout << "nullptr" << endl;
+    cout << "|| <- tail" << endl;
 }
 
 int DoubleList::size() {
@@ -85,31 +86,32 @@ bool DoubleList::empty() {
 }
 
 bool DoubleList::push_back(int key) {
-    Node* new_node = new Node{key, nullptr};
-    if (!this->head) {
+    Node* new_node = new Node{key, nullptr, nullptr};
+    if (this->tail){
+        this->tail->next = new_node;
+        new_node->prev = this->tail;
+        this->tail = new_node;
+        return true;
+    } else {
         this->head = new_node;
+        this->tail = new_node;
         return true;
     }
-    Node* node = this->head;
-    while (node->next) {
-        node = node->next;
-    }
-    node->next = new_node;
     return true;
 }
 
 bool DoubleList::pop_back() {
-    if (!this->head) return false;
-    if (!this->head->next) {
-        delete this->head;
+    if (!this->tail) {
+        return false;
+    } else if (!this->tail->prev){
+        delete this->tail;
+        this->tail = nullptr;
         this->head = nullptr;
         return true;
     }
-    Node* node = this->head;
-    while (node->next && node->next->next) {
-        node = node->next;
-    }
-    delete node->next;
+    Node* node = this->tail->prev;
+    delete this->tail;
+    this->tail = node;
     node->next = nullptr;
     return true;
 }
@@ -127,7 +129,7 @@ Node* DoubleList::find(int key) {
 
 bool DoubleList::insert_after(int key, Node* pos) {
     if (!pos) return false;
-    Node* node = new Node{key, pos->next};
+    Node* node = new Node{key, pos->next, pos};
     pos->next = node;
     return true;
 }
