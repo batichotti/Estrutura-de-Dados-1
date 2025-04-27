@@ -13,11 +13,10 @@ int main() {
     list.insert(8, 2);
     list.push_back(8);
     list.pop_back();
+    list.remove(7);
+    list.insert_sorted(5);
+
     list.print();
     list.print_reverse();
-    list.remove(9);
-    cout << "\n" << "Removing 9" << "\n";
-    list.print();
-
     return 0;
 }
