@@ -155,6 +155,7 @@ bool DoubleList::remove(int key) {
         if (node->next->key == key) {
             Node* to_delete = node->next;
            /////////////////////////////////////////////////////////////////////////
+           
             return true;
         }
         node = node->next;
