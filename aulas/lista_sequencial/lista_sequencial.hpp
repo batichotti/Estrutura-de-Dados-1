@@ -46,4 +46,19 @@ class ListSeq {
 
     // insere elemento em ordem crescente
     void addSorted(int elem);
+
+    // retorna a quantidade de posições livres restantes;
+    int list_get_available();
+
+    // remove todos os elementos da lista.
+    void list_clear();
+
+    // remove os últimos N elementos da lista ou o mais próximo disso
+    void list_remove_last(int n);
+
+    // imprime a lista de forma reversa
+    void list_print_reverse();
+
+    // verifica se a lista está ordenada
+    int list_is_sorted();
 };
