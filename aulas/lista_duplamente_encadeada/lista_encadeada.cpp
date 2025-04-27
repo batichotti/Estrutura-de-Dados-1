@@ -19,7 +19,7 @@ DoubleList::~DoubleList() {
 }
 
 bool DoubleList::push_front(int key) {
-    Node* node = new Node{key, nullptr, nullptr};
+    Node* node = new Node{key, this->head, nullptr};
     if (!node) return false;
     this->head = node;
     if (node->next)
@@ -33,6 +33,7 @@ bool DoubleList::pop_front() {
     if (!this->head) return false;
     Node* node = this->head;
     this->head = node->next;
+    this->head->prev = nullptr;
     if (!this->head) this->tail = nullptr;
     delete node;
     return true;
@@ -63,13 +64,24 @@ bool DoubleList::equals(DoubleList* other) {
 
 void DoubleList::print() {
     Node* node = this->head;
-    cout << "|| head -> ";
+    cout << " head -> " << this->head->key << " || ";
     while (node) {
         cout << node->key << " <-> ";
         node = node->next;
     }
-    cout << "|| <- tail" << endl;
+    cout << " || " << this->tail->key << " <- tail" << endl;
 }
+
+void DoubleList::print_reverse() {
+    Node* node = this->tail;
+    cout << " tail -> " << this->tail->key << " || ";
+    while (node) {
+        cout << node->key << " <-> ";
+        node = node->prev;
+    }
+    cout << " || " << this->head->key << " <- head" << endl;
+}
+
 
 int DoubleList::size() {
     int size = 0;
@@ -112,7 +124,7 @@ bool DoubleList::pop_back() {
     Node* node = this->tail->prev;
     delete this->tail;
     this->tail = node;
-    node->next = nullptr;
+    this->tail->next = nullptr;
     return true;
 }
 
@@ -141,21 +153,17 @@ bool DoubleList::remove(int key) {
     if (!this->head) return false;
 
     if (this->head->key == key) {
-        Node* to_delete = this->head;
-        this->head = this->head->next;
-        if (!this->head->next){
-            this->tail = this->head;
-        }
-        delete to_delete;
-        return true;
+        return pop_front();
     }
 
     Node* node = this->head;
     while (node->next) {
         if (node->next->key == key) {
             Node* to_delete = node->next;
-           /////////////////////////////////////////////////////////////////////////
-           
+
+            node->next = node->next->next;
+            if (node->next->next) node->next->next->prev = node;
+            delete to_delete;
             return true;
         }
         node = node->next;
