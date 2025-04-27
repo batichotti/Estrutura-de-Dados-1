@@ -17,6 +17,7 @@ class CircleList { // Lista Duplamente Encadeada
         bool pop_front(); // Destrói o primeiro
         int get(int pos); // Obtém no enésimo nó
         void print(); // Imprime todos os valores
+        void print_reverse(); // Imprime todos os valores
         int size(); // Obtém o tamanho da lista
         bool empty(); // Está vazia?
         bool push_back(int key); // Coloca no final
