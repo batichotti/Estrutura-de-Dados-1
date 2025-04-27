@@ -6,7 +6,6 @@ using namespace std;
 
 CircleList::CircleList() {
     this->head = nullptr;
-    this->tail = nullptr;
 }
 
 CircleList::~CircleList() {
