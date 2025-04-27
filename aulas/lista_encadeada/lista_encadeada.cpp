@@ -6,7 +6,6 @@ using namespace std;
 
 LinkedList::LinkedList() {
     this->head = nullptr;
-    // this->tail = nullptr;
 }
 
 LinkedList::~LinkedList() {
