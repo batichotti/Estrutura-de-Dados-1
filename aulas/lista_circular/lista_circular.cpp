@@ -19,33 +19,25 @@ CircleList::~CircleList() {
     this->head = nullptr;
 }
 
-bool CircleList::push_front(int key){
-    Node* node = new Node{key, this->head};
-    if (!this->head) {
-      this->head = node;
-      this->tail = node;
-    } else {
-      this->tail->next = node;
-      this->tail = node;
-    }
+
+bool CircleList::push_front(int key) {
+    Node* node = new Node{key, nullptr};
+    if (!node) return false;
+
+    node->next = this->head;
+    this->head = node;
     return true;
-  }
+}
 
 bool CircleList::pop_front() {
-    if (!this->head) {
-      return false;
-    }
+    if (!this->head) return false;
     Node* node = this->head;
-    this->head = this->head->next;
-    delete node;
-    if (!this->head) {
-      this->tail = nullptr;
-    } else {
-      this->tail->next = this->head; // Circularidade
-    }
+
+    this->head = node->next;
+    delete(node);
     return true;
-  }
-  
+}
+
 int CircleList::get(int pos) {
     if (pos > size()) return -1;
     Node* node = this->head;
@@ -95,7 +87,7 @@ bool CircleList::empty() {
 }
 
 bool CircleList::push_back(int key) {
-    if (!this->head) return;
+    if (!this->head) return false;
     Node* node = this->head;
     Node* new_node = new Node{key, nullptr};
 
@@ -103,6 +95,7 @@ bool CircleList::push_back(int key) {
         node = node->next;
     }
     node->next = new_node;
+    return true;
 }
 
 bool CircleList::pop_back() {
@@ -129,12 +122,9 @@ Node* CircleList::find(int key) {
 }
 
 bool CircleList::insert_after(int key, Node* pos) {
-    if (!pos) return false;
-    Node* novo = new Node{key, pos->next};
-    pos->next = novo;
-    if (pos == this->tail) {
-    this->tail = novo; // Atualiza o tail se o nó inserido for o último
-    }
+    Node* node = new Node{key, pos->next};
+    pos->next = node;
+    return true;
 }
 
 bool CircleList::remove(int key) {
@@ -162,10 +152,10 @@ bool CircleList::remove(int key) {
 bool CircleList::insert(int key, int pos) {
     if (pos > this->size() || pos < 0) return false;
 
-    if (pos == 0) return push_front(key);
-    
-    if (pos == size()) return push_back(key);
-    
+    if (pos == 0) return this->push_front(key);
+
+    if (pos == size()) return this->push_back(key);
+
     Node* node = this->head;
 
     for (int i = 0; i < pos-1; i++) node = node->next;
