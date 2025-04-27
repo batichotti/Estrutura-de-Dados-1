@@ -10,12 +10,13 @@ int main() {
     list.push_front(7);
     list.push_front(3);
     
-    list.print();
-    
     list.insert(8, 2);
     list.push_back(8);
     list.pop_back();
+    list.print();
+    list.print_reverse();
     list.remove(9);
+    cout << "\n" << "Removing 9" << "\n";
     list.print();
 
     return 0;
