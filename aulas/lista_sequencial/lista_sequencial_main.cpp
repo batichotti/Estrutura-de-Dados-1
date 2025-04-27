@@ -1,4 +1,7 @@
 #include "lista_sequencial.hpp"
+#include <iostream>
+
+using namespace std;
 
 int main() {
 	ListSeq ls(5);
@@ -7,6 +10,8 @@ int main() {
 	ls.add(4);
 	ls.add(5);
 	ls.addSorted(19);
+	ls.list_print_reverse();
+	cout << "\n";
 	ls.print();
 	return 0;
 };
