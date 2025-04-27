@@ -19,7 +19,6 @@ CircleList::~CircleList() {
     this->head = nullptr;
 }
 
-
 bool CircleList::push_front(int key) {
     Node* node = new Node{key, nullptr};
     if (!node) return false;
