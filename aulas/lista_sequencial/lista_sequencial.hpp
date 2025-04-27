@@ -61,4 +61,7 @@ class ListSeq {
 
     // verifica se a lista está ordenada
     int list_is_sorted();
+
+    // cria uma cópia da lista
+    ListSeq* list_copy();
 };
