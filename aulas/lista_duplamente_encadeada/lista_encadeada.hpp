@@ -16,6 +16,7 @@ class DoubleList { // Lista Duplamente Encadeada
         bool push_front(int key); // Coloca no começo
         bool pop_front(); // Destrói o primeiro
         void print(); // Imprime todos os valores
+        void print_reverse(); // Imprime todos os valores na ordem oposta
         int size(); // Obtém o tamanho da lista
         bool empty(); // Está vazia?
         bool push_back(int key); // Coloca no final
