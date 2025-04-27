@@ -2,7 +2,7 @@
 #include <algorithm>
 #include "lista_sequencial.hpp"
 
-using namespace std; //a.k.a.: from xyz import *
+using namespace std;
 
 ListSeq::ListSeq(int _capacity){
     data = new int[_capacity];
@@ -15,7 +15,7 @@ void ListSeq::destroy(){
 
 void  ListSeq::resize(){
     int* _data = new int[++capacity];
-    for(int i = 0; i < size;i++){
+    for(int i = 0; i < size; i++){
         _data[i] = data[i];
     }
     delete[] data;
@@ -40,6 +40,8 @@ void ListSeq::removeAt(int pos) {
             data[i] = data[i + 1];
         }
         size--;
+    } else if (pos == this->size){
+        this->remove();
     }
 }
 
@@ -95,4 +97,37 @@ void ListSeq::addSorted(int elem){
         }
     }
     add(elem);
+}
+
+int ListSeq::list_get_available(){
+    return (this->capacity-this->size);
+}
+
+void ListSeq::list_clear(){
+    int tamanho = this->size;
+    for (int i = 0; i < tamanho; i++){
+        this->remove();
+    }
+}
+
+void ListSeq::list_remove_last(int n){
+    for (int i = 0; i < n; i++){
+        this->remove();
+    }
+}
+
+void ListSeq::list_print_reverse(){
+    for (int i = this->size-1; i >= 0; i--){
+        cout << this->data[i] << " ";
+    }
+}
+
+int ListSeq::list_is_sorted(){
+    int tamanho = this->size-1;
+    for (int i = 0; i < tamanho; i++){
+        if (this->data[i] > this->data[i+1]){
+            return 0;
+        }
+    }
+    return 1;
 }
