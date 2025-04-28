@@ -131,3 +131,11 @@ int ListSeq::list_is_sorted(){
     }
     return 1;
 }
+
+ListSeq* ListSeq::list_copy(){
+    ListSeq* copia = new ListSeq(this->capacity);
+    for (int i = 0; i < this->size; i++){
+        copia->data[i] = data[i];
+    }
+    return copia;
+}
