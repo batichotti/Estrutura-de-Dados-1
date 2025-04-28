@@ -23,8 +23,6 @@ bool CircleList::push_front(int key) {
     this->head = node;
     if (node->next)
         node->next->prev = node;
-    else
-        this->tail = node;
     return true;
 }
 
