@@ -16,64 +16,75 @@ CircleList::~CircleList() {
         delete node;
         node = next;
     }
-    this->head = nullptr;
 }
 
 bool CircleList::push_front(int key) {
-    Node* node = new Node{key, nullptr};
+    Node* node = new Node{key, this->head};
     if (!node) return false;
-
-    node->next = this->head;
     this->head = node;
+    if (node->next == this->head)
+        this->tail = node;
     return true;
 }
 
 bool CircleList::pop_front() {
     if (!this->head) return false;
     Node* node = this->head;
-
     this->head = node->next;
-    delete(node);
+    this->head->prev = nullptr;
+    if (!this->head) this->tail = nullptr;
+    delete node;
     return true;
 }
 
 int CircleList::get(int pos) {
-    if (pos > size()) return -1;
+    if (pos >= size() || pos < 0) return -1;
     Node* node = this->head;
-    for (int i = 0; i < pos; i++){
+    for (int i = 0; i < pos; i++) {
         node = node->next;
     }
     return node->key;
 }
 
-bool CircleList::equals(CircleList* other){
+bool CircleList::equals(CircleList* other) {
     Node* a1 = this->head;
     Node* a2 = other->head;
-    
-    while (a1 && a2){
-        if (a1->key == a2->key){
-            a1 = a1->next;
-            a2 = a2->next;
-        } else {
+
+    while (a1 && a2) {
+        if (a1->key != a2->key) {
             return false;
         }
+        a1 = a1->next;
+        a2 = a2->next;
     }
-    return true;
+    return a1 == nullptr && a2 == nullptr;
 }
 
 void CircleList::print() {
     Node* node = this->head;
-    while(node){
-        cout << node->key << "->";
+    cout << " head -> " << this->head->key << " || ";
+    while (node) {
+        cout << node->key << " <-> ";
         node = node->next;
     }
-    cout << endl;
+    cout << " || " << this->tail->key << " <- tail" << endl;
 }
+
+void CircleList::print_reverse() {
+    Node* node = this->tail;
+    cout << " tail -> " << this->tail->key << " || ";
+    while (node) {
+        cout << node->key << " <-> ";
+        node = node->prev;
+    }
+    cout << " || " << this->head->key << " <- head" << endl;
+}
+
 
 int CircleList::size() {
     int size = 0;
     Node* node = this->head;
-    while (node){
+    while (node) {
         size++;
         node = node->next;
     }
@@ -81,31 +92,37 @@ int CircleList::size() {
 }
 
 bool CircleList::empty() {
-    if(!this->head) return true;
-    return false;
+    return this->head == nullptr;
 }
 
 bool CircleList::push_back(int key) {
-    if (!this->head) return false;
-    Node* node = this->head;
-    Node* new_node = new Node{key, nullptr};
-
-    while (node && node->next) {
-        node = node->next;
+    Node* new_node = new Node{key, nullptr, nullptr};
+    if (this->tail){
+        this->tail->next = new_node;
+        new_node->prev = this->tail;
+        this->tail = new_node;
+        return true;
+    } else {
+        this->head = new_node;
+        this->tail = new_node;
+        return true;
     }
-    node->next = new_node;
     return true;
 }
 
 bool CircleList::pop_back() {
-    if (!this->head) return false;
-    Node* node = this->head;
-
-    while (node && node->next) {
-        node = node->next;
+    if (!this->tail) {
+        return false;
+    } else if (!this->tail->prev){
+        delete this->tail;
+        this->tail = nullptr;
+        this->head = nullptr;
+        return true;
     }
-    delete node->next;
-    node->next = nullptr;
+    Node* node = this->tail->prev;
+    delete this->tail;
+    this->tail = node;
+    this->tail->next = nullptr;
     return true;
 }
 
@@ -121,58 +138,83 @@ Node* CircleList::find(int key) {
 }
 
 bool CircleList::insert_after(int key, Node* pos) {
-    Node* node = new Node{key, pos->next};
+    if (!pos) return false;
+    Node* node = new Node{key, pos->next, pos};
     pos->next = node;
+    if (this->tail == pos){
+        this->tail = pos->next;
+    }
     return true;
 }
 
 bool CircleList::remove(int key) {
-    Node* node = this->head;
+    if (!this->head) return false;
 
-    if (node && node->key == key) {
-        this->head = node->next;
-        delete node;
-        return true;
+    if (this->head->key == key) {
+        return pop_front();
+    }
+    
+    if (this->tail->key == key) {
+        return pop_back();
     }
 
-    while (node && node->next) {
+    Node* node = this->head;
+    while (node->next) {
         if (node->next->key == key) {
             Node* to_delete = node->next;
-            node->next = node->next->next;
+
+            node->next = to_delete->next;
+            if (to_delete->next) to_delete->next->prev = node;
             delete to_delete;
             return true;
         }
         node = node->next;
     }
-
     return false;
 }
 
 bool CircleList::insert(int key, int pos) {
     if (pos > this->size() || pos < 0) return false;
 
-    if (pos == 0) return this->push_front(key);
+    if (pos == 0) {
+        return this->push_front(key);
+    }
 
-    if (pos == size()) return this->push_back(key);
+    if (pos == this->size()){
+        return this->push_back(key);
+    }
 
     Node* node = this->head;
+    for (int i = 0; i < pos - 1; i++) {
+        node = node->next;
+    }
 
-    for (int i = 0; i < pos-1; i++) node = node->next;
+    Node* new_node = new Node{key, node->next, node};
+    node->next = new_node;
+    new_node->next->prev = new_node;
 
-    Node* novo = new Node{key, node->next};
-    node->next = novo;
     return true;
 }
 
 bool CircleList::removeAt(int pos) {
-    if (pos > this->size() || pos < 0) return false;
+    if (pos >= this->size() || pos < 0) return false;
+
+    if (pos == 0) {
+        return this->pop_front();
+    }
     
+    if (pos == this->size()) {
+        return this->pop_back();
+    }
+
     Node* node = this->head;
-    for (int i= 0; i < pos-1;i++){
+    for (int i = 0; i < pos - 1; i++) {
         node = node->next;
     }
+
     Node* to_delete = node->next;
     node->next = to_delete->next;
+    if (node->next->next) node->next->next->prev = node;
     delete to_delete;
 
     return true;
@@ -180,9 +222,7 @@ bool CircleList::removeAt(int pos) {
 
 bool CircleList::insert_sorted(int key) {
     if (!this->head || this->head->key > key) {
-        Node* new_node = new Node{key, this->head};
-        this->head = new_node;
-        return true;
+        return this->push_front(key);
     }
 
     Node* node = this->head;
@@ -190,7 +230,8 @@ bool CircleList::insert_sorted(int key) {
         node = node->next;
     }
 
-    Node* new_node = new Node{key, node->next};
+    Node* new_node = new Node{key, node->next, node};
     node->next = new_node;
+    new_node->next->prev = new_node;
     return true;
 }
