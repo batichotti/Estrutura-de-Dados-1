@@ -49,21 +49,57 @@ bool check_brackets(string expression){
     for (char c : expression){
         if (c == '(' || c == '[' || c == '{'){
             pilha.push(c);
-        } else if (!pilha.empty()){
-            if (c == ')' && pilha.top() != '('){
-                return false;
-            }
-            else if (c == ']' && pilha.top() != '['){
-                return false;
-            }
-            else if (c == '}' && pilha.top() != '{'){
-                return false;
-            }
-        } else {
+        } 
+        if ((c == ')' || c == ']' || c == '}') && pilha.empty()){
             return false;
         }
+
+        if (c == ')'){
+            if (pilha.top() == '(') pilha.pop();
+            else return false;
+        }
+        else if (c == ']'){
+            if (pilha.top() == '[') pilha.pop();
+            else return false;
+        }
+        else if (c == '}'){
+            if (pilha.top() == '{') pilha.pop();
+            else return false;
+        }
     }
-    return true;
+    
+    return pilha.empty();
+}
+
+vector<string> vectorize_expression(string expression) {
+    vector<string> vetor;
+    queue<char> fila;
+
+    for (char el : expression){
+        if(el == ' '){
+            string final;
+            while(!fila.empty()){
+                final.push_back(fila.front());
+                fila.pop();
+            }
+            vetor.push_back(final);
+        } else {
+            fila.push(el);
+        }
+    }
+    if (!fila.empty()){
+        string final;
+        while(!fila.empty()){
+            final.push_back(fila.front());
+            fila.pop();
+        }
+        vetor.push_back(final);
+    }
+    return vetor;
+}
+
+float calc_posfix(string expression){
+    
 }
 
 int main(){
@@ -91,5 +127,13 @@ int main(){
 
     cout << "\nCheck Brackets:\n";
     cout << check_brackets("(1+1)-[2+{4*4}]");
+
+    cout << "\nReverse Polish:\n";
+    for (string s : vectorize_expression("24 32 + 2 / 41 5 * +")){
+        cout << s << " ";
+    }
+
+    cout << "\nSolving the Reverse Polish:\n";
+    cout << calc_posfix("24 32 + 2 / 41 5 * +");
     return 0;
 }
