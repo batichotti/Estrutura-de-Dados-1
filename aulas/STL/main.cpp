@@ -44,6 +44,28 @@ vector<int> list_concat(list<int>& list1,list<int>& list2){
     return vec;
 }
 
+bool check_brackets(string expression){
+    stack<char> pilha;
+    for (char c : expression){
+        if (c == '(' || c == '[' || c == '{'){
+            pilha.push(c);
+        } else if (!pilha.empty()){
+            if (c == ')' && pilha.top() != '('){
+                return false;
+            }
+            else if (c == ']' && pilha.top() != '['){
+                return false;
+            }
+            else if (c == '}' && pilha.top() != '{'){
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    return true;
+}
+
 int main(){
     int n = 4;
     int array[n];
@@ -66,5 +88,8 @@ int main(){
     list<int> f2 = {5,6};
     vector<int> vec = list_concat(f1, f2);
     for(int e : vec) cout << e << " ";
+
+    cout << "\nCheck Brackets:\n";
+    cout << check_brackets("(1+1)-[2+{4*4}]");
     return 0;
 }
