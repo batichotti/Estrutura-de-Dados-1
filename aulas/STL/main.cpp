@@ -99,6 +99,66 @@ vector<string> vectorize_expression(string expression) {
 }
 
 float calc_posfix(string expression){
+    vector<string> vector_to_rpn = vectorize_expression(expression);
+    stack<float> pilha;
+    int a, b;
+    for (string el : vector_to_rpn){
+        if (isdigit(el.at(0))) {
+            int num = stoi(el);
+            pilha.push(num);
+        }
+        else if(pilha.size() < 2) throw invalid_argument("Invalid operators");
+        else if(el.compare("+") == 0){
+            a = pilha.top();
+            pilha.pop();
+            b = pilha.top();
+            pilha.pop();
+            pilha.push(b+a);
+        }
+        else if(el.compare("-") == 0){
+            a = pilha.top();
+            pilha.pop();
+            b = pilha.top();
+            pilha.pop();
+            pilha.push(b-a);
+        }
+        else if(el.compare("*") == 0){
+            a = pilha.top();
+            pilha.pop();
+            b = pilha.top();
+            pilha.pop();
+            pilha.push(b*a);
+        }
+        else if(el.compare("/") == 0){
+            a = pilha.top();
+            pilha.pop();
+            b = pilha.top();
+            pilha.pop();
+            pilha.push((int) b/a);
+        }
+        else throw invalid_argument("Invalid operators");
+    }
+    return pilha.top();
+}
+
+bool check_posfix(string expression){
+    vector<string> vector_to_rpn = vectorize_expression(expression);
+    stack<float> pilha;
+    for (string el : vector_to_rpn){
+        if (isdigit(el.at(0))) {
+            int num = stoi(el);
+            pilha.push(num);
+        }
+        else if(el.compare("+") == 0 || el.compare("-") == 0 || el.compare("*") == 0 || el.compare("/") == 0){
+            pilha.pop();
+        }
+        else throw invalid_argument("Invalid operators");
+    }
+    return pilha.size() == 1;
+}
+
+float calc_infix(string expression){
+    vector<string> vector = vectorize_expression(expression);
     
 }
 
@@ -135,5 +195,8 @@ int main(){
 
     cout << "\nSolving the Reverse Polish:\n";
     cout << calc_posfix("24 32 + 2 / 41 5 * +");
+
+    cout << "\nChecking the Reverse Polish:\n";
+    cout << check_posfix("24 32 + 2 / 41 5 * +");
     return 0;
 }
