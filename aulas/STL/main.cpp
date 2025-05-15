@@ -101,7 +101,7 @@ vector<string> vectorize_expression(string expression) {
 float calc_posfix(string expression){
     vector<string> vector_to_rpn = vectorize_expression(expression);
     stack<float> pilha;
-    int a, b;
+    float a, b;
     for (string el : vector_to_rpn){
         if (isdigit(el.at(0))) {
             int num = stoi(el);
@@ -134,7 +134,7 @@ float calc_posfix(string expression){
             pilha.pop();
             b = pilha.top();
             pilha.pop();
-            pilha.push((int) b/a);
+            pilha.push(b/a);
         }
         else throw invalid_argument("Invalid operators");
     }
@@ -159,19 +159,53 @@ bool check_posfix(string expression){
 
 float calc_infix(string expression){
     vector<string> vetor = vectorize_expression(expression);
-    stack<char> operador;
-    stack<float> operando;
+    stack<char> operadores;
+    stack<float> operandos;
+    float a, b;
 
     for (string el : vetor){
         if (isdigit(el.at(0))){
-            operando.push(stoi(el));
+            operandos.push(stoi(el));
         } else {
-            if (el.compare("(") == 0){}
-            if (el.compare(")") == 0){}
-            if (el.compare("+") == 0 || el.compare("-") == 0 || el.compare("*") == 0 || el.compare("/") == 0){}
+            if (el.compare("(") == 0) operadores.push(el.at(0));
+            if (el.compare("+") == 0 || el.compare("-") == 0 || el.compare("*") == 0 || el.compare("/") == 0){
+                if (operadores.top() == '('){
+                    operadores.push(el.at(0));
+                } else {
+                    if(el.compare("+") == 0){
+                        a = operandos.top();
+                        operandos.pop();
+                        b = operandos.top();
+                        operandos.pop();
+                        operandos.push(b+a);
+                    }
+                    else if(el.compare("-") == 0){
+                        a = operandos.top();
+                        operandos.pop();
+                        b = operandos.top();
+                        operandos.pop();
+                        operandos.push(b-a);
+                    }
+                    else if(el.compare("*") == 0){
+                        a = operandos.top();
+                        operandos.pop();
+                        b = operandos.top();
+                        operandos.pop();
+                        operandos.push(b*a);
+                    }
+                    else if(el.compare("/") == 0){
+                        a = operandos.top();
+                        operandos.pop();
+                        b = operandos.top();
+                        operandos.pop();
+                        operandos.push(b/a);
+                    }
+                    else throw invalid_argument("Invalid operators");
+                }
+            }
         }
-        
     }
+    return operandos.top();
 }
 
 int main(){
@@ -210,5 +244,8 @@ int main(){
 
     cout << "\nChecking the Reverse Polish:\n";
     cout << check_posfix("24 32 + 2 / 41 5 * +");
+    
+    cout << "\nSolving the Infix:\n";
+    cout << calc_infix(" ( ( ( 6 + 9 ) / 3 ) * ( 6 - 4) )");
     return 0;
 }
