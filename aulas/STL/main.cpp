@@ -158,8 +158,20 @@ bool check_posfix(string expression){
 }
 
 float calc_infix(string expression){
-    vector<string> vector = vectorize_expression(expression);
-    
+    vector<string> vetor = vectorize_expression(expression);
+    stack<char> operador;
+    stack<float> operando;
+
+    for (string el : vetor){
+        if (isdigit(el.at(0))){
+            operando.push(stoi(el));
+        } else {
+            if (el.compare("(") == 0){}
+            if (el.compare(")") == 0){}
+            if (el.compare("+") == 0 || el.compare("-") == 0 || el.compare("*") == 0 || el.compare("/") == 0){}
+        }
+        
+    }
 }
 
 int main(){
