@@ -168,40 +168,41 @@ float calc_infix(string expression){
             operandos.push(stoi(el));
         } else {
             if (el.compare("(") == 0) operadores.push(el.at(0));
-            if (el.compare("+") == 0 || el.compare("-") == 0 || el.compare("*") == 0 || el.compare("/") == 0){
-                if (operadores.top() == '('){
-                    operadores.push(el.at(0));
-                } else {
-                    if(el.compare("+") == 0){
-                        a = operandos.top();
-                        operandos.pop();
-                        b = operandos.top();
-                        operandos.pop();
-                        operandos.push(b+a);
+            else if (el.compare(")") == 0) {
+                while (!operadores.empty() && operadores.top() != '(') {
+                    char op = operadores.top();
+                    operadores.pop();
+                    float right = operandos.top(); operandos.pop();
+                    float left = operandos.top(); operandos.pop();
+                    switch(op) {
+                        case '+': operandos.push(left + right); break;
+                        case '-': operandos.push(left - right); break;
+                        case '*': operandos.push(left * right); break;
+                        case '/': operandos.push(left / right); break;
                     }
-                    else if(el.compare("-") == 0){
-                        a = operandos.top();
-                        operandos.pop();
-                        b = operandos.top();
-                        operandos.pop();
-                        operandos.push(b-a);
-                    }
-                    else if(el.compare("*") == 0){
-                        a = operandos.top();
-                        operandos.pop();
-                        b = operandos.top();
-                        operandos.pop();
-                        operandos.push(b*a);
-                    }
-                    else if(el.compare("/") == 0){
-                        a = operandos.top();
-                        operandos.pop();
-                        b = operandos.top();
-                        operandos.pop();
-                        operandos.push(b/a);
-                    }
-                    else throw invalid_argument("Invalid operators");
                 }
+                if (!operadores.empty() && operadores.top() == '(')
+                    operadores.pop();
+            }
+            else if (el.compare("+") == 0 || el.compare("-") == 0 || el.compare("*") == 0 || el.compare("/") == 0) {
+                while (!operadores.empty() && operadores.top() != '(' &&
+                    ((el == "+" || el == "-") || (el == "*" || el == "/"))) {
+                    char op = operadores.top();
+                    if ((op == '*' || op == '/') || ((el == "+" || el == "-") && (op == '+' || op == '-'))) {
+                        operadores.pop();
+                        float right = operandos.top(); operandos.pop();
+                        float left = operandos.top(); operandos.pop();
+                        switch(op) {
+                            case '+': operandos.push(left + right); break;
+                            case '-': operandos.push(left - right); break;
+                            case '*': operandos.push(left * right); break;
+                            case '/': operandos.push(left / right); break;
+                        }
+                    } else {
+                        break;
+                    }
+                }
+                operadores.push(el.at(0));
             }
         }
     }
