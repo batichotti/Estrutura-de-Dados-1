@@ -158,7 +158,7 @@ bool check_posfix(string expression){
 }
 
 float calc_infix(string expression){
-    vector<string> vetor = vectorize_expression(expression);
+    vector<string> vetor = vectorize_expression(expression);    
     stack<char> operadores;
     stack<float> operandos;
     float a, b;
@@ -166,44 +166,103 @@ float calc_infix(string expression){
     for (string el : vetor){
         if (isdigit(el.at(0))){
             operandos.push(stoi(el));
-        } else {
-            if (el.compare("(") == 0) operadores.push(el.at(0));
-            else if (el.compare(")") == 0) {
-                while (!operadores.empty() && operadores.top() != '(') {
-                    char op = operadores.top();
+            break;
+        }
+        if (el.compare("(") == 0){
+            operadores.push(el.at(0));
+            break;
+        }
+        if (el.at(0) == ')') {
+            while (!operadores.empty() && !(operadores.top() == '(')){
+                switch (el.at(0)){
+            case '/':
+                if (operadores.top() == '+' || operadores.top() == '-'){
+                    operadores.push(el.at(0));
+                } else {
+                    b = operandos.top();
+                    operandos.pop();
+                    a = operandos.top();
+                    operandos.pop();
+                    operandos.push(a/b);
                     operadores.pop();
-                    float right = operandos.top(); operandos.pop();
-                    float left = operandos.top(); operandos.pop();
-                    switch(op) {
-                        case '+': operandos.push(left + right); break;
-                        case '-': operandos.push(left - right); break;
-                        case '*': operandos.push(left * right); break;
-                        case '/': operandos.push(left / right); break;
-                    }
                 }
-                if (!operadores.empty() && operadores.top() == '(')
+                break;
+            case '*':
+                if (operadores.top() == '+' || operadores.top() == '-'){
+                    operadores.push(el.at(0));
+                } else {
+                    b = operandos.top();
+                    operandos.pop();
+                    a = operandos.top();
+                    operandos.pop();
+                    operandos.push(a*b);
                     operadores.pop();
+                }
+                break;
+            case '+':
+                b = operandos.top();
+                operandos.pop();
+                a = operandos.top();
+                operandos.pop();
+                operandos.push(a+b);
+                operadores.pop();
+                break;
+            case '-':
+                b = operandos.top();
+                operandos.pop();
+                a = operandos.top();
+                operandos.pop();
+                operandos.push(a-b);
+                operadores.pop();
+                break;
+            default:
+                break;
             }
-            else if (el.compare("+") == 0 || el.compare("-") == 0 || el.compare("*") == 0 || el.compare("/") == 0) {
-                while (!operadores.empty() && operadores.top() != '(' &&
-                    ((el == "+" || el == "-") || (el == "*" || el == "/"))) {
-                    char op = operadores.top();
-                    if ((op == '*' || op == '/') || ((el == "+" || el == "-") && (op == '+' || op == '-'))) {
-                        operadores.pop();
-                        float right = operandos.top(); operandos.pop();
-                        float left = operandos.top(); operandos.pop();
-                        switch(op) {
-                            case '+': operandos.push(left + right); break;
-                            case '-': operandos.push(left - right); break;
-                            case '*': operandos.push(left * right); break;
-                            case '/': operandos.push(left / right); break;
-                        }
-                    } else {
-                        break;
-                    }
-                }
+            }
+        }
+        switch (el.at(0)){
+        case '/':
+            if (operadores.top() == '+' || operadores.top() == '-'){
                 operadores.push(el.at(0));
+            } else {
+                b = operandos.top();
+                operandos.pop();
+                a = operandos.top();
+                operandos.pop();
+                operandos.push(a/b);
+                operadores.pop();
             }
+            break;
+        case '*':
+            if (operadores.top() == '+' || operadores.top() == '-'){
+                operadores.push(el.at(0));
+            } else {
+                b = operandos.top();
+                operandos.pop();
+                a = operandos.top();
+                operandos.pop();
+                operandos.push(a*b);
+                operadores.pop();
+            }
+            break;
+        case '+':
+            b = operandos.top();
+            operandos.pop();
+            a = operandos.top();
+            operandos.pop();
+            operandos.push(a+b);
+            operadores.pop();
+            break;
+        case '-':
+            b = operandos.top();
+            operandos.pop();
+            a = operandos.top();
+            operandos.pop();
+            operandos.push(a-b);
+            operadores.pop();
+            break;
+        default:
+            break;
         }
     }
     return operandos.top();
@@ -247,6 +306,6 @@ int main(){
     cout << check_posfix("24 32 + 2 / 41 5 * +");
     
     cout << "\nSolving the Infix:\n";
-    cout << calc_infix(" ( ( ( 6 + 9 ) / 3 ) * ( 6 - 4) )");
+    cout << calc_infix("( ( ( 6 + 9 ) / 3 ) * ( 6 - 4) )");
     return 0;
 }
