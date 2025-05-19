@@ -145,10 +145,7 @@ bool check_posfix(string expression){
     vector<string> vector_to_rpn = vectorize_expression(expression);
     stack<float> pilha;
     for (string el : vector_to_rpn){
-        if (isdigit(el.at(0))) {
-            int num = stoi(el);
-            pilha.push(num);
-        }
+        if (isdigit(el.at(0))) pilha.push(stoi(el));
         else if(el.compare("+") == 0 || el.compare("-") == 0 || el.compare("*") == 0 || el.compare("/") == 0){
             pilha.pop();
         }
@@ -157,7 +154,68 @@ bool check_posfix(string expression){
     return pilha.size() == 1;
 }
 
+void calc(stack<float>& operandos, stack<char>& operadores){
+    float b = operandos.top();
+    operandos.pop();
+    float a = operandos.top();
+    operandos.pop();
+    char op = operadores.top();
+    operadores.pop();
+    switch(op) {
+        case '+': operandos.push(a + b); break;
+        case '-': operandos.push(a - b); break;
+        case '*': operandos.push(a * b); break;
+        case '/': operandos.push(a / b); break;
+    }
+}
+
 float calc_infix(string expression){
+    vector<string> vector = vectorize_expression(expression);
+    stack<float> operandos;
+    stack<char> operadores;
+
+    for (string el : vector){
+        if (isdigit(el.at(0))){
+            operandos.push(stoi(el));
+        }
+        
+        if (el.compare("(") == 0){
+            operadores.push(el.at(0));
+        }
+
+        if (el.compare("/") == 0 || el.compare("*") == 0 || el.compare("-") == 0 || el.compare("+") == 0) {
+            operadores.push(el.at(0));
+        }
+
+        if (el.compare(")") == 0) {
+            calc(operandos, operadores);
+            operadores.pop();
+        }
+    }
+    
+    return operandos.top();
+}
+
+string posfix_to_infix(string expression){
+    vector<string> vector = vectorize_expression(expression);
+    stack<string> pilha;
+
+    for (const string& el : vector) {
+        if (isdigit(el[0])) {
+            pilha.push(el);
+        } else if (el == "+" || el == "-" || el == "*" || el == "/") {
+            if (pilha.size() < 2) throw invalid_argument("Invalid postfix");
+            string b = pilha.top();
+            pilha.pop();
+            string a = pilha.top();
+            pilha.pop();
+            string expr = "( " + a + " " + el + " " + b + " )";
+            pilha.push(expr);
+        }
+    }
+
+    if (pilha.size() != 1) throw invalid_argument("Invalid postfix");
+    return pilha.top();
 }
 
 int main(){
@@ -198,6 +256,9 @@ int main(){
     cout << check_posfix("24 32 + 2 / 41 5 * +");
     
     cout << "\nSolving the Infix:\n";
-    cout << calc_infix("( ( ( 6 + 9 ) / 3 ) * ( 6 - 4) )");
+    cout << calc_infix("( ( ( 6 + 9 ) / 3 ) * ( 6 - 4 ) )");
+
+    cout << "\nPosfix to Infix:\n";
+    cout << posfix_to_infix("6 9 + 3 / 6 4 - *");
     return 0;
 }
