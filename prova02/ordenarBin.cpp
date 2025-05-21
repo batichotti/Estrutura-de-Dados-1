@@ -6,13 +6,14 @@ using namespace std;
 void SelectionSort(vector<int>& vetor){
     int size = vetor.size();
     for (int i = 0; i < size; i++){
-        int min = vetor.at(i);
+        int min = vetor[i];
         int min_pos = -1;
-        for (int j = i; j < size; j++){
+        for (int j = i+1; j < size; j++){
             if (vetor.at(j) < min) min = vetor[j]; min_pos = j;
         }
-        vetor[min_pos] = vetor.at(i);
+        int temp = vetor[i];
         vetor[i] = min;
+        vetor[min_pos] = temp;
     }
 }
 
