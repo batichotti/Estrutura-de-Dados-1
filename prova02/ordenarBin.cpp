@@ -6,7 +6,7 @@ using namespace std;
 void selectionSort(vector<int>& vec){
     for (int i = 0; i < (int) vec.size(); i++){
         int min = vec[i];
-        int min_pos = -1;
+        int min_pos = i;
         
         for (int j = i+1; j < (int) vec.size(); j++){
             if (vec[j] < min){
