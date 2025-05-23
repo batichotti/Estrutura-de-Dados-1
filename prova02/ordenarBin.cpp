@@ -1,9 +1,13 @@
+#include <time.h>
 #include <vector>
 #include <iostream>
 
 using namespace std;
 
-void selectionSort(vector<int>& vec){
+void selectionSort(vector<int>& vec, time_t tempo){
+    time_t tempo_inicial;
+    time(&tempo_inicial);
+
     for (int i = 0; i < (int) vec.size(); i++){
         int min = vec[i];
         int min_pos = i;
@@ -19,6 +23,11 @@ void selectionSort(vector<int>& vec){
         vec[i] = min;
         vec[min_pos] = temp;
     }
+
+    time_t tempo_final;
+    time(&tempo_final);
+
+    tempo = difftime(tempo_final, tempo_inicial);
 }
 
 void swap(int &a, int &b){
