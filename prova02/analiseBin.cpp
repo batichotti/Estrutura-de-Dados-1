@@ -20,12 +20,20 @@ vector<int> readBinaryFile(string path){
 }
 
 int main(int argc, char const *argv[]){
+    if (argc < 2) {
+        cerr << "Uso: " << argv[0] << " <quantidade>\n";
+        return 1;
+    }
 
-    vector<int> vec = readBinaryFile("random_30000_numbers.bin");
+    vector<int> vec = readBinaryFile("random_" + string(argv[1]) + "_numbers.bin");
+    if (vec.empty()) {
+        cerr << "Erro ao ler o arquivo binário ou arquivo vazio.\n";
+        return 1;
+    }
     
     time_t tempo;
     
-    selectionSort(vec, &tempo);
+    selectionSort(vec, tempo);
     
     cout << tempo;
 
