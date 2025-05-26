@@ -41,3 +41,17 @@ void bubbleSort(vector<int>& vec){
         for(int j = 0; j + 1 < (int) vec.size() - i; j++) 
             if(vec[j] > vec[j + 1]) swap(vec[j], vec[j + 1]);
 }
+
+void insertionSort(vector<int>& vec){
+    for(int i = 0; i < (int) vec.size(); i++){   
+        int index = i - 1;
+        int key = vec[i];
+
+        while(vec[i] < vec[i - 1] && index >= 0){
+            vec[index + 1] = vec[index];
+            index--;
+        }
+
+        vec[i + 1] = key;
+    }
+}
