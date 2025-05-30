@@ -2,9 +2,10 @@
 
 void count(int n, int max){
     if (n <= max){
-        std::cout << n << std::endl;
+        std::cout << n << " ";
         count(++n, max);
     }
+    else std::cout << std::endl;
     return;
 }
 
