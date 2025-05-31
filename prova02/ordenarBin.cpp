@@ -42,6 +42,36 @@ void bubbleSort(vector<int>& vec){
             if(vec[j] > vec[j + 1]) swap(vec[j], vec[j + 1]);
 }
 
+void optBubbleSort(vector<int>& vec) {
+    int len = (int) vec.size();
+
+    while (len > 1) {
+        int newlen = 0;
+        for (int i = 1; i < len; i++){
+            if (vec[i - 1] > vec[i]) {
+                swap(vec[i - 1], vec[i]);
+                newlen = i;
+            }
+        }
+
+        len = newlen;
+    }
+}
+
+void optSelectionSort(vector<int>& vec){
+    for(int i = 0; i < (int) vec.size(); i++){
+        int minidx = i;
+
+        for(int j = i + 1; j < (int) vec.size(); j++){
+            if(vec[j] < vec[j - 1]) swap(vec[j], vec[j - 1]);
+            if(vec[j] < vec[minidx]) minidx = j;
+        }
+
+        if(minidx != i) swap(vec[i], vec[minidx]);
+    }
+}
+
+
 void insertionSort(vector<int>& vec){
     for(int i = 0; i < (int) vec.size(); i++){   
         int index = i - 1;
