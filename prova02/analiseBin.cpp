@@ -31,11 +31,35 @@ int main(int argc, char const *argv[]){
         return 1;
     }
     
-    time_t tempo;
+    time_t tempo_ss;
     
-    selectionSort(vec, tempo);
+    selectionSort(vec, tempo_ss);
     
-    cout << tempo;
+    cout << "Selection Sort: " << tempo_ss << endl;
+    
+    time_t tempo_sso;
+    
+    selectionSortOpt(vec, tempo_sso);
+    
+    cout << "Selection Sort Otimizado: " << tempo_sso << endl;
+    
+    time_t tempo_bs;
+    
+    bubbleSort(vec, tempo_bs);
+    
+    cout << "Bubble Sort: " << tempo_bs << endl;
+    
+    time_t tempo_bso;
+    
+    bubbleSortOpt(vec, tempo_bso);
+    
+    cout << "Bubble Sort Otimizado: " << tempo_ss << endl;
+    
+    time_t tempo_is;
+    
+    insertionSort(vec, tempo_is);
+    
+    cout << "Insertion Sort: " << tempo_is << endl;
 
     return 0;
 }
