@@ -38,9 +38,7 @@ int main(int argc, char* argv[]) {
 
     vector<int> vec = createRandVec(vecSize, 2147483647);
 
-    cout << endl;
-    for(int e : vec) cout << e << " ";
-    cout << endl; cout << endl;
+    cout << "Arquivo criado." << endl;
 
     createBinaryFile(vec);
 }
