@@ -36,15 +36,25 @@ void swap(int &a, int &b){
     b = temp;
 }
 
-void bubbleSort(vector<int>& vec){
+void bubbleSort(vector<int>& vec, time_t& tempo){
+    time_t tempo_inicial;
+    time(&tempo_inicial);
+
     for(int i = 0; i < (int) vec.size(); i++) 
-        for(int j = 0; j + 1 < (int) vec.size() - i; j++) 
-            if(vec[j] > vec[j + 1]) swap(vec[j], vec[j + 1]);
+    for(int j = 0; j + 1 < (int) vec.size() - i; j++) 
+    if(vec[j] > vec[j + 1]) swap(vec[j], vec[j + 1]);
+    time_t tempo_final;
+    time(&tempo_final);
+
+    tempo = difftime(tempo_final, tempo_inicial);
 }
 
-void optBubbleSort(vector<int>& vec) {
-    int len = (int) vec.size();
+void bubbleSortOpt(vector<int>& vec, time_t& tempo) {
+    time_t tempo_inicial;
+    time(&tempo_inicial);
 
+    int len = (int) vec.size();
+    
     while (len > 1) {
         int newlen = 0;
         for (int i = 1; i < len; i++){
@@ -53,35 +63,53 @@ void optBubbleSort(vector<int>& vec) {
                 newlen = i;
             }
         }
-
+        
         len = newlen;
     }
+    time_t tempo_final;
+    time(&tempo_final);
+
+    tempo = difftime(tempo_final, tempo_inicial);
 }
 
-void optSelectionSort(vector<int>& vec){
+void selectionSortOpt(vector<int>& vec, time_t& tempo){
+    time_t tempo_inicial;
+    time(&tempo_inicial);
+
     for(int i = 0; i < (int) vec.size(); i++){
         int minidx = i;
-
+        
         for(int j = i + 1; j < (int) vec.size(); j++){
             if(vec[j] < vec[j - 1]) swap(vec[j], vec[j - 1]);
             if(vec[j] < vec[minidx]) minidx = j;
         }
-
+        
         if(minidx != i) swap(vec[i], vec[minidx]);
     }
+    time_t tempo_final;
+    time(&tempo_final);
+
+    tempo = difftime(tempo_final, tempo_inicial);
 }
 
 
-void insertionSort(vector<int>& vec){
+void insertionSort(vector<int>& vec, time_t& tempo){
+    time_t tempo_inicial;
+    time(&tempo_inicial);
+
     for(int i = 0; i < (int) vec.size(); i++){   
         int index = i - 1;
         int key = vec[i];
-
+        
         while(vec[i] < vec[i - 1] && index >= 0){
             vec[index + 1] = vec[index];
             index--;
         }
-
+        
         vec[i + 1] = key;
     }
+    time_t tempo_final;
+    time(&tempo_final);
+
+    tempo = difftime(tempo_final, tempo_inicial);
 }
