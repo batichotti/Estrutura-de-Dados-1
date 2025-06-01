@@ -72,26 +72,55 @@ void bubbleSortOpt(vector<int>& vec, time_t& tempo) {
     tempo = difftime(tempo_final, tempo_inicial);
 }
 
+// void selectionSortOpt(vector<int>& vec, time_t& tempo){
+//     time_t tempo_inicial;
+//     time(&tempo_inicial);
+
+//     for(int i = 0; i < (int) vec.size(); i++){
+//         int minidx = i;
+        
+//         for(int j = i + 1; j < (int) vec.size(); j++){
+//             if(vec[j] < vec[j - 1]) swap(vec[j], vec[j - 1]);
+//             if(vec[j] < vec[minidx]) minidx = j;
+//         }
+        
+//         if(minidx != i) swap(vec[i], vec[minidx]);
+//     }
+//     time_t tempo_final;
+//     time(&tempo_final);
+
+//     tempo = difftime(tempo_final, tempo_inicial);
+// }
+
 void selectionSortOpt(vector<int>& vec, time_t& tempo){
     time_t tempo_inicial;
     time(&tempo_inicial);
 
-    for(int i = 0; i < (int) vec.size(); i++){
-        int minidx = i;
-        
-        for(int j = i + 1; j < (int) vec.size(); j++){
-            if(vec[j] < vec[j - 1]) swap(vec[j], vec[j - 1]);
-            if(vec[j] < vec[minidx]) minidx = j;
+    int frst = 0;
+    int lst = (int) vec.size() - 1;
+
+    while(frst < lst){
+        int minIdx = frst;
+        int maxIdx = frst;
+
+        for(int i = frst + 1; i <= lst; ++i){
+            if(vec[i] < vec[minIdx]) minIdx = i;
+            if(vec[i] > vec[maxIdx]) maxIdx = i;
         }
-        
-        if(minidx != i) swap(vec[i], vec[minidx]);
+
+        swap(vec[frst], vec[minIdx]);
+        if(maxIdx == frst) maxIdx = minIdx;
+
+        swap(vec[lst], vec[maxIdx]);
+
+        ++frst;
+        --lst;
     }
     time_t tempo_final;
     time(&tempo_final);
 
     tempo = difftime(tempo_final, tempo_inicial);
 }
-
 
 void insertionSort(vector<int>& vec, time_t& tempo){
     time_t tempo_inicial;
