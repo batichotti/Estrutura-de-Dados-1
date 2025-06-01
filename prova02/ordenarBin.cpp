@@ -126,16 +126,16 @@ void insertionSort(vector<int>& vec, time_t& tempo){
     time_t tempo_inicial;
     time(&tempo_inicial);
 
-    for(int i = 0; i < (int) vec.size(); i++){   
+    for(int i = 1; i < (int) vec.size(); i++){   
         int index = i - 1;
         int key = vec[i];
         
-        while(vec[i] < vec[i - 1] && index >= 0){
+        while(index >= 0 && vec[index] > key){
             vec[index + 1] = vec[index];
             index--;
         }
         
-        vec[i + 1] = key;
+        vec[index + 1] = key;
     }
     time_t tempo_final;
     time(&tempo_final);
