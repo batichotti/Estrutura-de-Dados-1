@@ -1,5 +1,6 @@
 #include <vector>
 #include <iostream>
+#include <chrono>
 
 using namespace std;
 
@@ -8,13 +9,23 @@ bool isSorted(vector<int>& vec){
     return true;
 }
 
-int buscaSeq(vector<int>& vec, int elem){
+int buscaSeq(vector<int>& vec, int elem, float& time){
+    auto tempo_inicial = chrono::high_resolution_clock::now();
+
     for(int i = 0; i < (int) vec.size(); i++) if(vec[i] == elem) return i;
+    
+    auto tempo_final = chrono::high_resolution_clock::now();
+
+    chrono::duration<float> duracao = tempo_final - tempo_inicial;
+    return duracao.count();
+
     return -1;
 }
 
-int buscaBin(vector<int>& vec, int elem){
+int buscaBin(vector<int>& vec, int elem, float& time){
     if(!isSorted(vec)) return -1;
+
+    auto tempo_inicial = chrono::high_resolution_clock::now();
 
     int left = 0, right = (int) vec.size() - 1;
 
@@ -25,6 +36,11 @@ int buscaBin(vector<int>& vec, int elem){
         else if(vec[mid] < elem) left = mid + 1;
         else right = mid - 1;
     }
+
+    auto tempo_final = chrono::high_resolution_clock::now();
+
+    chrono::duration<float> duracao = tempo_final - tempo_inicial;
+    return duracao.count();
 
     return -1;
 }
