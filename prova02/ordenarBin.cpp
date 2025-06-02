@@ -4,7 +4,7 @@
 
 using namespace std;
 
-float selectionSort(vector<int>& vec){
+float selectionSort(vector<int>& vec, int& trocas){
     auto tempo_inicial = chrono::high_resolution_clock::now();
 
     for (int i = 0; i < (int) vec.size(); i++){
@@ -18,9 +18,7 @@ float selectionSort(vector<int>& vec){
             }
         }
 
-        int temp = vec[i];
-        vec[i] = min;
-        vec[min_pos] = temp;
+        swap(vec[i], vec[min_pos]); trocas++;
     }
 
     auto tempo_final = chrono::high_resolution_clock::now();
@@ -35,12 +33,12 @@ void swap(int &a, int &b){
     b = temp;
 }
 
-float bubbleSort(vector<int>& vec){
+float bubbleSort(vector<int>& vec, int& trocas){
     auto tempo_inicial = chrono::high_resolution_clock::now();
     
     for(int i = 0; i < (int) vec.size(); i++) 
-    for(int j = 0; j + 1 < (int) vec.size() - i; j++) 
-    if(vec[j] > vec[j + 1]) swap(vec[j], vec[j + 1]);
+        for(int j = 0; j + 1 < (int) vec.size() - i; j++) 
+            if(vec[j] > vec[j + 1]){swap(vec[j], vec[j + 1]); trocas++;}
     
     auto tempo_final = chrono::high_resolution_clock::now();
 
@@ -48,7 +46,7 @@ float bubbleSort(vector<int>& vec){
     return duracao.count();
 }
 
-float bubbleSortOpt(vector<int>& vec) {
+float bubbleSortOpt(vector<int>& vec, int& trocas) {
     auto tempo_inicial = chrono::high_resolution_clock::now();
 
     int len = (int) vec.size();
@@ -57,7 +55,7 @@ float bubbleSortOpt(vector<int>& vec) {
         int newlen = 0;
         for (int i = 1; i < len; i++){
             if (vec[i - 1] > vec[i]) {
-                swap(vec[i - 1], vec[i]);
+                swap(vec[i - 1], vec[i]); trocas++;
                 newlen = i;
             }
         }
@@ -89,7 +87,7 @@ float bubbleSortOpt(vector<int>& vec) {
             // return duracao.count();
 // }
 
-float optimizedClassic(vector<int>& vec) {
+float optimizedClassic(vector<int>& vec, int& trocas) {
     auto start = chrono::high_resolution_clock::now();
     
     for (int i = 0; i < vec.size() - 1; i++) {
@@ -99,14 +97,14 @@ float optimizedClassic(vector<int>& vec) {
             if (vec[j] < vec[minPos]) minPos = j;
         }
         
-        if (minPos != i) swap(vec[i], vec[minPos]);
+        if (minPos != i){swap(vec[i], vec[minPos]); trocas++;}
     }
 
     auto end = chrono::high_resolution_clock::now();
     return chrono::duration<float>(end - start).count();
 }
 
-float insertionSort(vector<int>& vec){
+float insertionSort(vector<int>& vec, int& trocas){
     auto tempo_inicial = chrono::high_resolution_clock::now();
 
     for(int i = 1; i < (int) vec.size(); i++){   
@@ -114,11 +112,11 @@ float insertionSort(vector<int>& vec){
         int key = vec[i];
         
         while(index >= 0 && vec[index] > key){
-            vec[index + 1] = vec[index];
+            vec[index + 1] = vec[index]; trocas++;
             index--;
         }
         
-        vec[index + 1] = key;
+        vec[index + 1] = key; trocas++;
     }
 
     auto tempo_final = chrono::high_resolution_clock::now();
