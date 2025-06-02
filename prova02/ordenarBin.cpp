@@ -4,7 +4,7 @@
 
 using namespace std;
 
-time_t selectionSort(vector<int>& vec){
+int selectionSort(vector<int>& vec){
     time_t tempo_inicial;
     time(&tempo_inicial);
 
@@ -36,7 +36,7 @@ void swap(int &a, int &b){
     b = temp;
 }
 
-time_t bubbleSort(vector<int>& vec){
+int bubbleSort(vector<int>& vec){
     time_t tempo_inicial;
     time(&tempo_inicial);
 
@@ -49,7 +49,7 @@ time_t bubbleSort(vector<int>& vec){
     return difftime(tempo_final, tempo_inicial);
 }
 
-time_t bubbleSortOpt(vector<int>& vec) {
+int bubbleSortOpt(vector<int>& vec) {
     time_t tempo_inicial;
     time(&tempo_inicial);
 
@@ -72,7 +72,7 @@ time_t bubbleSortOpt(vector<int>& vec) {
     return difftime(tempo_final, tempo_inicial);
 }
 
-// time_t selectionSortOpt(vector<int>& vec){
+// int selectionSortOpt(vector<int>& vec){
 //     time_t tempo_inicial;
 //     time(&tempo_inicial);
 
@@ -92,7 +92,7 @@ time_t bubbleSortOpt(vector<int>& vec) {
 //     return difftime(tempo_final, tempo_inicial);
 // }
 
-time_t selectionSortOpt(vector<int>& vec){
+int selectionSortOpt(vector<int>& vec){
     time_t tempo_inicial;
     time(&tempo_inicial);
 
@@ -122,7 +122,7 @@ time_t selectionSortOpt(vector<int>& vec){
     return difftime(tempo_final, tempo_inicial);
 }
 
-time_t insertionSort(vector<int>& vec){
+int insertionSort(vector<int>& vec){
     time_t tempo_inicial;
     time(&tempo_inicial);
 
