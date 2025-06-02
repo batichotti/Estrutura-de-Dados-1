@@ -72,7 +72,7 @@ int main(int argc, char const *argv[]){
     cout.width(15); cout << tempo_is; 
     cout << "| Deslocamentos: " << trocas << endl;
     
-    vec = readBinaryFile("random_" + string(argv[1]) + "_numbers.bin"); trocas = 0;
+    // vec = readBinaryFile("random_" + string(argv[1]) + "_numbers.bin"); trocas = 0;
 
     long double tempo_busc_s;
     long double tempo_busc_b;
