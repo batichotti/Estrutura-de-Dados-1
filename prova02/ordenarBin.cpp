@@ -89,34 +89,21 @@ float bubbleSortOpt(vector<int>& vec) {
             // return duracao.count();
 // }
 
-float selectionSortOpt(vector<int>& vec){
-    auto tempo_inicial = chrono::high_resolution_clock::now();
-
-    int frst = 0;
-    int lst = (int) vec.size() - 1;
+float optimizedClassic(vector<int>& vec) {
+    auto start = chrono::high_resolution_clock::now();
     
-    while(frst < lst){
-        int minIdx = frst;
-        int maxIdx = frst;
-
-        for(int i = frst + 1; i <= lst; ++i){
-            if(vec[i] < vec[minIdx]) minIdx = i;
-            if(vec[i] > vec[maxIdx]) maxIdx = i;
+    for (int i = 0; i < vec.size() - 1; i++) {
+        int minPos = i;
+        
+        for (int j = i + 1; j < vec.size(); j++) {
+            if (vec[j] < vec[minPos]) minPos = j;
         }
         
-        swap(vec[frst], vec[minIdx]);
-        if(maxIdx == frst) maxIdx = minIdx;
-        
-        swap(vec[lst], vec[maxIdx]);
-        
-        ++frst;
-        --lst;
+        if (minPos != i) swap(vec[i], vec[minPos]);
     }
 
-    auto tempo_final = chrono::high_resolution_clock::now();
-
-    chrono::duration<float> duracao = tempo_final - tempo_inicial;
-    return duracao.count();
+    auto end = chrono::high_resolution_clock::now();
+    return chrono::duration<float>(end - start).count();
 }
 
 float insertionSort(vector<int>& vec){
