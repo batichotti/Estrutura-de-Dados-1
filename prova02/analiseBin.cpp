@@ -51,5 +51,8 @@ int main(int argc, char const *argv[]){
     
     cout << "Insertion Sort: " << tempo_is << endl;
 
+    float tempo_bs;
+    float tempo_bb;
+
     return 0;
 }
