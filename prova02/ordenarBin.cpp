@@ -87,7 +87,7 @@ float bubbleSortOpt(vector<int>& vec, int& trocas) {
             // return duracao.count();
 // }
 
-float optimizedClassic(vector<int>& vec, int& trocas) {
+float selectionSortOpt(vector<int>& vec, int& trocas) {
     auto start = chrono::high_resolution_clock::now();
     
     for (int i = 0; i < vec.size() - 1; i++) {
