@@ -3,6 +3,7 @@
 #include <string>
 #include <time.h>
 #include "ordenarBin.cpp"
+#include "buscaBin.cpp"
 
 using namespace std;
 
@@ -50,9 +51,16 @@ int main(int argc, char const *argv[]){
     float tempo_is = insertionSort(vec);
     
     cout << "Insertion Sort: " << tempo_is << endl;
+    
+    float tempo_busc_s;
+    float tempo_busc_b;
+    
+    buscaSeq(vec, 20, tempo_busc_s);
+    buscaBin(vec, 20, tempo_busc_b);
 
-    float tempo_bs;
-    float tempo_bb;
-
+    cout << "Sequencial Search: " << tempo_busc_s << endl;
+    
+    cout << "Binary Search: " << tempo_busc_b << endl;
+    
     return 0;
 }
