@@ -4,10 +4,10 @@
 
 using namespace std;
 
-float selectionSort(vector<int>& vec, int& trocas){
+long double selectionSort(vector<int>& vec, unsigned long long int& trocas){
     auto tempo_inicial = chrono::high_resolution_clock::now();
 
-    for (int i = 0; i < (int) vec.size(); i++){
+    for (int i = 0; i < (int) vec.size() - 1; i++){
         int min = vec[i];
         int min_pos = i;
         
@@ -23,7 +23,7 @@ float selectionSort(vector<int>& vec, int& trocas){
 
     auto tempo_final = chrono::high_resolution_clock::now();
 
-    chrono::duration<float> duracao = tempo_final - tempo_inicial;
+    chrono::duration<long double> duracao = tempo_final - tempo_inicial;
     return duracao.count();
 }
 
@@ -33,7 +33,7 @@ void swap(int &a, int &b){
     b = temp;
 }
 
-float bubbleSort(vector<int>& vec, int& trocas){
+long double bubbleSort(vector<int>& vec, unsigned long long  int& trocas){
     auto tempo_inicial = chrono::high_resolution_clock::now();
     
     for(int i = 0; i < (int) vec.size(); i++) 
@@ -42,11 +42,11 @@ float bubbleSort(vector<int>& vec, int& trocas){
     
     auto tempo_final = chrono::high_resolution_clock::now();
 
-    chrono::duration<float> duracao = tempo_final - tempo_inicial;
+    chrono::duration<long double> duracao = tempo_final - tempo_inicial;
     return duracao.count();
 }
 
-float bubbleSortOpt(vector<int>& vec, int& trocas) {
+long double bubbleSortOpt(vector<int>& vec, unsigned long long int& trocas) {
     auto tempo_inicial = chrono::high_resolution_clock::now();
 
     int len = (int) vec.size();
@@ -64,11 +64,11 @@ float bubbleSortOpt(vector<int>& vec, int& trocas) {
     }
     auto tempo_final = chrono::high_resolution_clock::now();
 
-    chrono::duration<float> duracao = tempo_final - tempo_inicial;
+    chrono::duration<long double> duracao = tempo_final - tempo_inicial;
     return duracao.count();
 }
 
-// float selectionSortOpt(vector<int>& vec){
+// long double selectionSortOpt(vector<int>& vec){
     // auto tempo_inicial = chrono::high_resolution_clock::now();
     //     for(int i = 0; i < (int) vec.size(); i++){
         //         int minidx = i;
@@ -83,11 +83,11 @@ float bubbleSortOpt(vector<int>& vec, int& trocas) {
             
             // auto tempo_final = chrono::high_resolution_clock::now();
         
-            // chrono::duration<float> duracao = tempo_final - tempo_inicial;
+            // chrono::duration<long double> duracao = tempo_final - tempo_inicial;
             // return duracao.count();
 // }
 
-float selectionSortOpt(vector<int>& vec, int& trocas) {
+long double selectionSortOpt(vector<int>& vec, unsigned long long int& trocas) {
     auto start = chrono::high_resolution_clock::now();
     
     for (int i = 0; i < vec.size() - 1; i++) {
@@ -101,10 +101,10 @@ float selectionSortOpt(vector<int>& vec, int& trocas) {
     }
 
     auto end = chrono::high_resolution_clock::now();
-    return chrono::duration<float>(end - start).count();
+    return chrono::duration<long double>(end - start).count();
 }
 
-float insertionSort(vector<int>& vec, int& trocas){
+long double insertionSort(vector<int>& vec, unsigned long long int& trocas){
     auto tempo_inicial = chrono::high_resolution_clock::now();
 
     for(int i = 1; i < (int) vec.size(); i++){   
@@ -121,6 +121,6 @@ float insertionSort(vector<int>& vec, int& trocas){
 
     auto tempo_final = chrono::high_resolution_clock::now();
 
-    chrono::duration<float> duracao = tempo_final - tempo_inicial;
+    chrono::duration<long double> duracao = tempo_final - tempo_inicial;
     return duracao.count();
 }
