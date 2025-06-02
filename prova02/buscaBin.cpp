@@ -12,12 +12,20 @@ bool isSorted(vector<int>& vec){
 int buscaSeq(vector<int>& vec, int elem, float& time){
     auto tempo_inicial = chrono::high_resolution_clock::now();
 
-    for(int i = 0; i < (int) vec.size(); i++) if(vec[i] == elem) return i;
+    for(int i = 0; i < (int) vec.size(); i++){
+        if(vec[i] == elem){
+            auto tempo_final = chrono::high_resolution_clock::now();
+        
+            chrono::duration<float> duracao = tempo_final - tempo_inicial;
+            time = duracao.count();
+            return i;
+        }
+    }
     
     auto tempo_final = chrono::high_resolution_clock::now();
 
     chrono::duration<float> duracao = tempo_final - tempo_inicial;
-    return duracao.count();
+    time = duracao.count();
 
     return -1;
 }
@@ -32,7 +40,13 @@ int buscaBin(vector<int>& vec, int elem, float& time){
     while(left <= right){
         int mid = left + (right - left) / 2;
 
-        if(vec[mid] == elem) return mid;
+        if(vec[mid] == elem){
+            auto tempo_final = chrono::high_resolution_clock::now();
+        
+            chrono::duration<float> duracao = tempo_final - tempo_inicial;
+            time = duracao.count();
+            return mid;
+        }
         else if(vec[mid] < elem) left = mid + 1;
         else right = mid - 1;
     }
@@ -40,7 +54,7 @@ int buscaBin(vector<int>& vec, int elem, float& time){
     auto tempo_final = chrono::high_resolution_clock::now();
 
     chrono::duration<float> duracao = tempo_final - tempo_inicial;
-    return duracao.count();
+    time = duracao.count();
 
     return -1;
 }
