@@ -4,7 +4,7 @@
 
 using namespace std;
 
-void selectionSort(vector<int>& vec, time_t& tempo){
+time_t selectionSort(vector<int>& vec){
     time_t tempo_inicial;
     time(&tempo_inicial);
 
@@ -27,7 +27,7 @@ void selectionSort(vector<int>& vec, time_t& tempo){
     time_t tempo_final;
     time(&tempo_final);
 
-    tempo = difftime(tempo_final, tempo_inicial);
+    return difftime(tempo_final, tempo_inicial);
 }
 
 void swap(int &a, int &b){
@@ -36,7 +36,7 @@ void swap(int &a, int &b){
     b = temp;
 }
 
-void bubbleSort(vector<int>& vec, time_t& tempo){
+time_t bubbleSort(vector<int>& vec){
     time_t tempo_inicial;
     time(&tempo_inicial);
 
@@ -46,10 +46,10 @@ void bubbleSort(vector<int>& vec, time_t& tempo){
     time_t tempo_final;
     time(&tempo_final);
 
-    tempo = difftime(tempo_final, tempo_inicial);
+    return difftime(tempo_final, tempo_inicial);
 }
 
-void bubbleSortOpt(vector<int>& vec, time_t& tempo) {
+time_t bubbleSortOpt(vector<int>& vec) {
     time_t tempo_inicial;
     time(&tempo_inicial);
 
@@ -69,10 +69,10 @@ void bubbleSortOpt(vector<int>& vec, time_t& tempo) {
     time_t tempo_final;
     time(&tempo_final);
 
-    tempo = difftime(tempo_final, tempo_inicial);
+    return difftime(tempo_final, tempo_inicial);
 }
 
-// void selectionSortOpt(vector<int>& vec, time_t& tempo){
+// time_t selectionSortOpt(vector<int>& vec){
 //     time_t tempo_inicial;
 //     time(&tempo_inicial);
 
@@ -89,10 +89,10 @@ void bubbleSortOpt(vector<int>& vec, time_t& tempo) {
 //     time_t tempo_final;
 //     time(&tempo_final);
 
-//     tempo = difftime(tempo_final, tempo_inicial);
+//     return difftime(tempo_final, tempo_inicial);
 // }
 
-void selectionSortOpt(vector<int>& vec, time_t& tempo){
+time_t selectionSortOpt(vector<int>& vec){
     time_t tempo_inicial;
     time(&tempo_inicial);
 
@@ -119,10 +119,10 @@ void selectionSortOpt(vector<int>& vec, time_t& tempo){
     time_t tempo_final;
     time(&tempo_final);
 
-    tempo = difftime(tempo_final, tempo_inicial);
+    return difftime(tempo_final, tempo_inicial);
 }
 
-void insertionSort(vector<int>& vec, time_t& tempo){
+time_t insertionSort(vector<int>& vec){
     time_t tempo_inicial;
     time(&tempo_inicial);
 
@@ -140,5 +140,5 @@ void insertionSort(vector<int>& vec, time_t& tempo){
     time_t tempo_final;
     time(&tempo_final);
 
-    tempo = difftime(tempo_final, tempo_inicial);
+    return difftime(tempo_final, tempo_inicial);
 }
