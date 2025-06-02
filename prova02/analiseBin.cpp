@@ -32,28 +32,28 @@ int main(int argc, char const *argv[]){
         return 1;
     }
     
-    float tempo_ss = selectionSort(vec);
+    double tempo_ss = selectionSort(vec);
     
     cout << "Selection Sort: " << tempo_ss << endl;
     
-    float tempo_sso = selectionSortOpt(vec);
+    double tempo_sso = selectionSortOpt(vec);
     
     cout << "Selection Sort Otimizado: " << tempo_sso << endl;
     
-    float tempo_bs = bubbleSort(vec);
+    double tempo_bs = bubbleSort(vec);
     
     cout << "Bubble Sort: " << tempo_bs << endl;
     
-    float tempo_bso = bubbleSortOpt(vec);
+    double tempo_bso = bubbleSortOpt(vec);
     
     cout << "Bubble Sort Otimizado: " << tempo_ss << endl;
     
-    float tempo_is = insertionSort(vec);
+    double tempo_is = insertionSort(vec);
     
     cout << "Insertion Sort: " << tempo_is << endl;
     
-    float tempo_busc_s;
-    float tempo_busc_b;
+    double tempo_busc_s;
+    double tempo_busc_b;
     
     buscaSeq(vec, 20, tempo_busc_s);
     buscaBin(vec, 20, tempo_busc_b);
