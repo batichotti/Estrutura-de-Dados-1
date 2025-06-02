@@ -31,23 +31,23 @@ int main(int argc, char const *argv[]){
         return 1;
     }
     
-    time_t tempo_ss = selectionSort(vec);
+    float tempo_ss = selectionSort(vec);
     
     cout << "Selection Sort: " << tempo_ss << endl;
     
-    time_t tempo_sso = selectionSortOpt(vec);
+    float tempo_sso = selectionSortOpt(vec);
     
     cout << "Selection Sort Otimizado: " << tempo_sso << endl;
     
-    time_t tempo_bs = bubbleSort(vec);
+    float tempo_bs = bubbleSort(vec);
     
     cout << "Bubble Sort: " << tempo_bs << endl;
     
-    time_t tempo_bso = bubbleSortOpt(vec);
+    float tempo_bso = bubbleSortOpt(vec);
     
     cout << "Bubble Sort Otimizado: " << tempo_ss << endl;
     
-    time_t tempo_is = insertionSort(vec);
+    float tempo_is = insertionSort(vec);
     
     cout << "Insertion Sort: " << tempo_is << endl;
 

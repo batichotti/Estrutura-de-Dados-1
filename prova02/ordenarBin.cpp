@@ -1,12 +1,11 @@
-#include <time.h>
 #include <vector>
 #include <iostream>
+#include <chrono>
 
 using namespace std;
 
-time_t selectionSort(vector<int>& vec){
-    time_t tempo_inicial;
-    time(&tempo_inicial);
+float selectionSort(vector<int>& vec){
+    auto tempo_inicial = chrono::high_resolution_clock::now();
 
     for (int i = 0; i < (int) vec.size(); i++){
         int min = vec[i];
@@ -24,10 +23,10 @@ time_t selectionSort(vector<int>& vec){
         vec[min_pos] = temp;
     }
 
-    time_t tempo_final;
-    time(&tempo_final);
+    auto tempo_final = chrono::high_resolution_clock::now();
 
-    return difftime(tempo_final, tempo_inicial);
+    chrono::duration<float> duracao = tempo_final - tempo_inicial;
+    return duracao.count();
 }
 
 void swap(int &a, int &b){
@@ -36,22 +35,21 @@ void swap(int &a, int &b){
     b = temp;
 }
 
-time_t bubbleSort(vector<int>& vec){
-    time_t tempo_inicial;
-    time(&tempo_inicial);
-
+float bubbleSort(vector<int>& vec){
+    auto tempo_inicial = chrono::high_resolution_clock::now();
+    
     for(int i = 0; i < (int) vec.size(); i++) 
     for(int j = 0; j + 1 < (int) vec.size() - i; j++) 
     if(vec[j] > vec[j + 1]) swap(vec[j], vec[j + 1]);
-    time_t tempo_final;
-    time(&tempo_final);
+    
+    auto tempo_final = chrono::high_resolution_clock::now();
 
-    return difftime(tempo_final, tempo_inicial);
+    chrono::duration<float> duracao = tempo_final - tempo_inicial;
+    return duracao.count();
 }
 
-time_t bubbleSortOpt(vector<int>& vec) {
-    time_t tempo_inicial;
-    time(&tempo_inicial);
+float bubbleSortOpt(vector<int>& vec) {
+    auto tempo_inicial = chrono::high_resolution_clock::now();
 
     int len = (int) vec.size();
     
@@ -66,39 +64,37 @@ time_t bubbleSortOpt(vector<int>& vec) {
         
         len = newlen;
     }
-    time_t tempo_final;
-    time(&tempo_final);
+    auto tempo_final = chrono::high_resolution_clock::now();
 
-    return difftime(tempo_final, tempo_inicial);
+    chrono::duration<float> duracao = tempo_final - tempo_inicial;
+    return duracao.count();
 }
 
-// time_t selectionSortOpt(vector<int>& vec){
-//     time_t tempo_inicial;
-//     time(&tempo_inicial);
-
-//     for(int i = 0; i < (int) vec.size(); i++){
-//         int minidx = i;
+// float selectionSortOpt(vector<int>& vec){
+    // auto tempo_inicial = chrono::high_resolution_clock::now();
+    //     for(int i = 0; i < (int) vec.size(); i++){
+        //         int minidx = i;
         
-//         for(int j = i + 1; j < (int) vec.size(); j++){
-//             if(vec[j] < vec[j - 1]) swap(vec[j], vec[j - 1]);
-//             if(vec[j] < vec[minidx]) minidx = j;
-//         }
+        //         for(int j = i + 1; j < (int) vec.size(); j++){
+            //             if(vec[j] < vec[j - 1]) swap(vec[j], vec[j - 1]);
+            //             if(vec[j] < vec[minidx]) minidx = j;
+            //         }
+            
+            //         if(minidx != i) swap(vec[i], vec[minidx]);
+            //     }
+            
+            // auto tempo_final = chrono::high_resolution_clock::now();
         
-//         if(minidx != i) swap(vec[i], vec[minidx]);
-//     }
-//     time_t tempo_final;
-//     time(&tempo_final);
-
-//     return difftime(tempo_final, tempo_inicial);
+            // chrono::duration<float> duracao = tempo_final - tempo_inicial;
+            // return duracao.count();
 // }
 
-time_t selectionSortOpt(vector<int>& vec){
-    time_t tempo_inicial;
-    time(&tempo_inicial);
+float selectionSortOpt(vector<int>& vec){
+    auto tempo_inicial = chrono::high_resolution_clock::now();
 
     int frst = 0;
     int lst = (int) vec.size() - 1;
-
+    
     while(frst < lst){
         int minIdx = frst;
         int maxIdx = frst;
@@ -107,24 +103,24 @@ time_t selectionSortOpt(vector<int>& vec){
             if(vec[i] < vec[minIdx]) minIdx = i;
             if(vec[i] > vec[maxIdx]) maxIdx = i;
         }
-
+        
         swap(vec[frst], vec[minIdx]);
         if(maxIdx == frst) maxIdx = minIdx;
-
+        
         swap(vec[lst], vec[maxIdx]);
-
+        
         ++frst;
         --lst;
     }
-    time_t tempo_final;
-    time(&tempo_final);
 
-    return difftime(tempo_final, tempo_inicial);
+    auto tempo_final = chrono::high_resolution_clock::now();
+
+    chrono::duration<float> duracao = tempo_final - tempo_inicial;
+    return duracao.count();
 }
 
-time_t insertionSort(vector<int>& vec){
-    time_t tempo_inicial;
-    time(&tempo_inicial);
+float insertionSort(vector<int>& vec){
+    auto tempo_inicial = chrono::high_resolution_clock::now();
 
     for(int i = 1; i < (int) vec.size(); i++){   
         int index = i - 1;
@@ -137,8 +133,9 @@ time_t insertionSort(vector<int>& vec){
         
         vec[index + 1] = key;
     }
-    time_t tempo_final;
-    time(&tempo_final);
 
-    return difftime(tempo_final, tempo_inicial);
+    auto tempo_final = chrono::high_resolution_clock::now();
+
+    chrono::duration<float> duracao = tempo_final - tempo_inicial;
+    return duracao.count();
 }
