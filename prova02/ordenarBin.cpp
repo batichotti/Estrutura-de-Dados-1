@@ -137,6 +137,7 @@ int insertionSort(vector<int>& vec){
         
         vec[index + 1] = key;
     }
+    
     time_t tempo_final;
     time(&tempo_final);
 
