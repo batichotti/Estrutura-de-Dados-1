@@ -12,6 +12,15 @@ bool isSorted(vector<int>& vec){
 
 int buscaSeq(vector<int>& vec, int elem, unsigned long long int& comp){
     Cronometro cronometro("Busca Sequencial");
+
+    // int k = 0;
+    // for (int i = 0; i < 1000000; i++){
+    //     for (int j = 0; j < 1000; j++){
+    //         k++;
+    //     }
+    // }
+    // cout << k;
+
     comp = 0;
     for(int i = 0; i < (int) vec.size(); i++){
         comp++;
@@ -24,7 +33,7 @@ int buscaSeq(vector<int>& vec, int elem, unsigned long long int& comp){
 
 int buscaBin(vector<int>& vec, int elem, unsigned long long int& comp){
     if(!isSorted(vec)) return -1;
-    Cronometro cronometro("Busca Binária");
+    Cronometro cronometro("Busca Binaria");
     comp = 0;
 
     int left = 0, right = (int) vec.size() - 1;

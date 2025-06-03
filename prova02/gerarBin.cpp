@@ -1,12 +1,11 @@
 #include <iostream>
 #include <vector>
-#include <cstdlib>
-#include <ctime>
+#include <random>
 #include <limits>
 
 using namespace std;
 
-void createBinaryFile(vector<int> vetor){
+void createBinaryFile(const vector<int>& vetor){
     string path = "random_" + to_string(vetor.size()) + "_numbers.bin";
     FILE* binario = fopen(path.c_str(), "wb");
     for (int el: vetor){
@@ -16,11 +15,15 @@ void createBinaryFile(vector<int> vetor){
 }
 
 vector<int> createRandVec(int size, int range){
-    srand(time(0));    
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<int> dist(0, range);
+
     vector<int> vec;
+    vec.reserve(size);
 
     for(int i = 0; i < size; i++){
-        vec.push_back(rand() % (range + 1));
+        vec.push_back(dist(gen));
     }
 
     return vec;
@@ -36,7 +39,7 @@ int main(int argc, char* argv[]) {
         }
     }
 
-    vector<int> vec = createRandVec(vecSize, 2147483647);
+    vector<int> vec = createRandVec(vecSize, numeric_limits<int>::max());
 
     cout << "Arquivo criado." << endl;
 

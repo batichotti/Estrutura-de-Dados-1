@@ -44,13 +44,16 @@ int main(int argc, char const *argv[]){
     long double tempo_busc_b;
     unsigned long long int comp_busc_b = 0;
     
-    cout << "Busca Sequencial: posicao " << buscaSeq(vec, rand(), comp_busc_s) << endl;
-    cout << "Busca Binaria: posicao " << buscaBin(vec, rand(), comp_busc_b) << endl;
+    int random = 2147154760;
+    int pos_bs = buscaSeq(vec, random, comp_busc_s);
+    int pos_bb = buscaBin(vec, random, comp_busc_b);
+    cout << "Busca Sequencial: posicao " << " Pegou -> " << vec[pos_bs] << " Deveria ter pego -> " << random << endl;
+    cout << "Busca Binaria: posicao " << " Pegou -> " << vec[pos_bb] << " Deveria ter pego -> " << random << endl;
 
     cout.width(28); cout << "Busca Sequencial";
-    cout << "Comparacoes: " << comp_busc_s << endl;
+    cout << " Comparacoes: " << comp_busc_s << endl;
 
     cout.width(28); cout << "Busca Binaria";
-    cout << "Comparacoes: " << comp_busc_b << endl;
+    cout << " Comparacoes: " << comp_busc_b << endl;
     return 0;
 }
