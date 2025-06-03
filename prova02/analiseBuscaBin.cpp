@@ -35,17 +35,17 @@ int main(int argc, char const *argv[]){
     unsigned long long int trocas = 0;
     long double tempo_is = insertionSort(vec, trocas);
 
-    cout.width(28); cout << "Insertion Sort:"; 
-    cout.width(15); cout << tempo_is; 
-    cout << "| Deslocamentos: " << trocas << endl;
+    // cout.width(28); cout << "Insertion Sort:"; 
+    // cout.width(15); cout << tempo_is; 
+    // cout << "| Deslocamentos: " << trocas << endl;
     
     long double tempo_busc_s;
     unsigned long long int comp_busc_s = 0;
     long double tempo_busc_b;
     unsigned long long int comp_busc_b = 0;
     
-    buscaSeq(vec, 750001, comp_busc_s);
-    buscaBin(vec, 750001, comp_busc_b);
+    cout << "Busca Sequencial: posicao " << buscaSeq(vec, rand(), comp_busc_s) << endl;
+    cout << "Busca Binaria: posicao " << buscaBin(vec, rand(), comp_busc_b) << endl;
 
     cout.width(28); cout << "Busca Sequencial";
     cout << "Comparacoes: " << comp_busc_s << endl;
