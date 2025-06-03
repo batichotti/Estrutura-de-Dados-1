@@ -35,9 +35,9 @@ int main(int argc, char const *argv[]){
     unsigned long long int trocas = 0;
     long double tempo_is = insertionSort(vec, trocas);
 
-    // cout.width(28); cout << "Insertion Sort:"; 
-    // cout.width(15); cout << tempo_is; 
-    // cout << "| Deslocamentos: " << trocas << endl;
+    cout.width(28); cout << "Insertion Sort:"; 
+    cout.width(15); cout << tempo_is; 
+    cout << "| Deslocamentos: " << trocas << endl;
     
     long double tempo_busc_s;
     unsigned long long int comp_busc_s = 0;
@@ -47,8 +47,8 @@ int main(int argc, char const *argv[]){
     int random = 2147154760;
     int pos_bs = buscaSeq(vec, random, comp_busc_s);
     int pos_bb = buscaBin(vec, random, comp_busc_b);
-    cout << "Busca Sequencial: posicao " << " Pegou -> " << vec[pos_bs] << " Deveria ter pego -> " << random << endl;
-    cout << "Busca Binaria: posicao " << " Pegou -> " << vec[pos_bb] << " Deveria ter pego -> " << random << endl;
+    cout << "Busca Sequencial: posicao " << pos_bs << " Pegou -> " << vec[pos_bs] << " Deveria ter pego -> " << random << endl;
+    cout << "Busca Binaria: posicao " << pos_bb << " Pegou -> " << vec[pos_bb] << " Deveria ter pego -> " << random << endl;
 
     cout.width(28); cout << "Busca Sequencial";
     cout << " Comparacoes: " << comp_busc_s << endl;

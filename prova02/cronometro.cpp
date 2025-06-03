@@ -17,8 +17,8 @@ class Cronometro {
         auto end = std::chrono::high_resolution_clock::now();
         auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - clock);
         const double res = duration.count();
-        const auto a = res / 1000;      // milliseconds
-        const auto b = res / 1000000;   // seconds
+        const auto a = res / 1000;
+        const auto b = res / 1000000;
         std::cout << "Tempo decorrido para " << nome << ": " << res << " us; " << a << " ms; " << b << " s.\n";
     }
 };
