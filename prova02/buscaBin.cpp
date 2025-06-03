@@ -9,7 +9,7 @@ bool isSorted(vector<int>& vec){
     return true;
 }
 
-int buscaSeq(vector<int>& vec, int elem, long double& time, unsigned long long int comp){
+int buscaSeq(vector<int>& vec, int elem, long double& time, unsigned long long int& comp){
     auto tempo_inicial = chrono::high_resolution_clock::now();
     comp = 0;
 
@@ -32,7 +32,7 @@ int buscaSeq(vector<int>& vec, int elem, long double& time, unsigned long long i
     return -1;
 }
 
-int buscaBin(vector<int>& vec, int elem, long double& time, unsigned long long int comp){
+int buscaBin(vector<int>& vec, int elem, long double& time, unsigned long long int& comp){
     if(!isSorted(vec)) return -1;
     
     auto tempo_inicial = chrono::high_resolution_clock::now();
