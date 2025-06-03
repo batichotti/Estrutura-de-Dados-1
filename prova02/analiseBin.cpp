@@ -75,14 +75,19 @@ int main(int argc, char const *argv[]){
     // vec = readBinaryFile("random_" + string(argv[1]) + "_numbers.bin"); trocas = 0;
 
     long double tempo_busc_s;
+    unsigned long long int comp_busc_s = 0;
     long double tempo_busc_b;
+    unsigned long long int comp_busc_b = 0;
     
-    buscaSeq(vec, 20, tempo_busc_s);
-    buscaBin(vec, 20, tempo_busc_b);
+    buscaSeq(vec, 297000, tempo_busc_s, comp_busc_s);
+    buscaBin(vec, 297000, tempo_busc_b, comp_busc_b);
 
-    cout << "Sequencial Search: " << tempo_busc_s << endl;
-    
-    cout << "Binary Search: " << tempo_busc_b << endl;
-    
+    cout.width(28); cout << "Busca Sequencial:"; 
+    cout.width(15); cout << tempo_busc_s; 
+    cout << "| Comparacoes: " << comp_busc_s << endl;
+
+    cout.width(28); cout << "Busca Binária:"; 
+    cout.width(15); cout << tempo_busc_b; 
+    cout << "| Comparacoes: " << comp_busc_b << endl;
     return 0;
 }
