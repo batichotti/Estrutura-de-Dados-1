@@ -44,8 +44,8 @@ int main(int argc, char const *argv[]){
     long double tempo_busc_b;
     unsigned long long int comp_busc_b = 0;
     
-    buscaSeq(vec, 17500000, tempo_busc_s, comp_busc_s);
-    buscaBin(vec, 17500000, tempo_busc_b, comp_busc_b);
+    buscaSeq(vec, 750001, tempo_busc_s, comp_busc_s);
+    buscaBin(vec, 750001, tempo_busc_b, comp_busc_b);
 
     cout.width(28); cout << "Busca Sequencial:"; 
     cout.width(15); cout << tempo_busc_s; 
