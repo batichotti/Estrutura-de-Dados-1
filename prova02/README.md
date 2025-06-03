@@ -32,7 +32,7 @@ Este projeto consiste na implementação, análise e comparação de algoritmos 
     ```
     Gera `vetor_ordenado.bin` com inteiros de 0 a 1.000.000.
 
-> **Observação:** O arquivo `random_1000001_numbers.bin` é gerado já ordenado.
+> **Observação:** Os arquivos `random_10001_numbers.bin` e `random_1000001_numbers.bin` é gerado já ordenado.
 
 ### 2. Análise dos Algoritmos de Ordenação
 

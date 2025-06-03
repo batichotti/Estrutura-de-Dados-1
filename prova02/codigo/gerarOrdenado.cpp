@@ -2,7 +2,7 @@
 #include <fstream>
 
 int main() {
-    const size_t N = 1000001;
+    const size_t N = 10001;
     std::ofstream out("vetor_ordenado.bin", std::ios::binary);
     if (!out) {
         std::cerr << "Erro ao abrir o arquivo para escrita.\n";
