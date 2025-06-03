@@ -47,8 +47,6 @@ int main(int argc, char const *argv[]){
     buscaSeq(vec, 750001, comp_busc_s);
     buscaBin(vec, 750001, comp_busc_b);
 
-    cout << endl;
-
     cout.width(28); cout << "Busca Sequencial";
     cout << "Comparacoes: " << comp_busc_s << endl;
 
