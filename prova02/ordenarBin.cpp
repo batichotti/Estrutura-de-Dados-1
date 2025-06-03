@@ -1,10 +1,12 @@
 #include <vector>
 #include <iostream>
 #include <chrono>
+#include "cronometro.cpp"
 
 using namespace std;
 
 long double selectionSort(vector<int>& vec, unsigned long long int& trocas){
+    Cronometro cronometro("Selection Sort: ");
     auto tempo_inicial = chrono::high_resolution_clock::now();
 
     for (int i = 0; i < (int) vec.size() - 1; i++){
@@ -34,6 +36,7 @@ void swap(int &a, int &b){
 }
 
 long double bubbleSort(vector<int>& vec, unsigned long long  int& trocas){
+    Cronometro cronometro("Bubble Sort: ");
     auto tempo_inicial = chrono::high_resolution_clock::now();
     
     for(int i = 0; i < (int) vec.size(); i++) 
@@ -47,6 +50,7 @@ long double bubbleSort(vector<int>& vec, unsigned long long  int& trocas){
 }
 
 long double bubbleSortOpt(vector<int>& vec, unsigned long long int& trocas) {
+    Cronometro cronometro("Bubble Sort Opt: ");
     auto tempo_inicial = chrono::high_resolution_clock::now();
 
     int len = (int) vec.size();
@@ -88,6 +92,7 @@ long double bubbleSortOpt(vector<int>& vec, unsigned long long int& trocas) {
 // }
 
 long double selectionSortOpt(vector<int>& vec, unsigned long long int& trocas) {
+    Cronometro cronometro("Selection Sort Opt: ");
     auto start = chrono::high_resolution_clock::now();
     
     for (int i = 0; i < vec.size() - 1; i++) {
@@ -105,6 +110,7 @@ long double selectionSortOpt(vector<int>& vec, unsigned long long int& trocas) {
 }
 
 long double insertionSort(vector<int>& vec, unsigned long long int& trocas){
+    Cronometro cronometro("Insertion Sort: ");
     auto tempo_inicial = chrono::high_resolution_clock::now();
 
     for(int i = 1; i < (int) vec.size(); i++){   
