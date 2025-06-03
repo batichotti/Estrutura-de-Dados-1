@@ -1,6 +1,6 @@
 # Prova 2 — Algoritmos e Estrutura de Dados 1
 **Curso:** Ciência da Computação — UTFPR Campo Mourão  
-**Alunos:** Mateus Batichotti Silva, Arthur Vinicius Machado
+**Alunos:** Arthur Vinicius Machado e Mateus Batichotti Silva
 
 ## Descrição Geral
 
@@ -86,4 +86,4 @@ g++ -std=c++11 -O2 -o analiseBuscaBin analiseBuscaBin.cpp
 
 ## Créditos
 
-Trabalho desenvolvido por **Mateus Batichotti Silva** e **Arthur Vinicius Machado** para a disciplina de Algoritmos e Estrutura de Dados 1 — UTFPR Campo Mourão.
+Trabalho desenvolvido por **Mateus Batichotti Silva** e **Arthur Vinicius Machado** para a disciplina de Algoritmos e Estrutura de Dados 1 — UTFPR Campo Mourão, ministrada por Rodrigo Hubner.
