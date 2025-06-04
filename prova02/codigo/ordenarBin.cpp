@@ -5,6 +5,12 @@
 
 using namespace std;
 
+void swap(int &a, int &b){
+    int temp = a;
+    a = b;
+    b = temp;
+}
+
 long double selectionSort(vector<int>& vec, unsigned long long int& trocas){
     Cronometro cronometro("Selection Sort: ");
     auto tempo_inicial = chrono::high_resolution_clock::now();
@@ -27,12 +33,6 @@ long double selectionSort(vector<int>& vec, unsigned long long int& trocas){
 
     chrono::duration<long double> duracao = tempo_final - tempo_inicial;
     return duracao.count();
-}
-
-void swap(int &a, int &b){
-    int temp = a;
-    a = b;
-    b = temp;
 }
 
 long double bubbleSort(vector<int>& vec, unsigned long long  int& trocas){
