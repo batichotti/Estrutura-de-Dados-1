@@ -1,6 +1,6 @@
 # Prova 2 — Algoritmos e Estrutura de Dados 1
 **Curso:** Ciência da Computação — UTFPR Campo Mourão  
-**Alunos:** Mateus Batichotti Silva, Arthur Vinicius Machado
+**Alunos:** Arthur Vinicius Machado e Mateus Batichotti Silva
 
 ## Descrição Geral
 
@@ -32,7 +32,7 @@ Este projeto consiste na implementação, análise e comparação de algoritmos 
     ```
     Gera `vetor_ordenado.bin` com inteiros de 0 a 1.000.000.
 
-> **Observação:** O arquivo `random_1000001_numbers.bin` é gerado já ordenado.
+> **Observação:** Os arquivos `random_10001_numbers.bin` e `random_1000001_numbers.bin` é gerado já ordenado.
 
 ### 2. Análise dos Algoritmos de Ordenação
 
@@ -86,4 +86,4 @@ g++ -std=c++11 -O2 -o analiseBuscaBin analiseBuscaBin.cpp
 
 ## Créditos
 
-Trabalho desenvolvido por **Mateus Batichotti Silva** e **Arthur Vinicius Machado** para a disciplina de Algoritmos e Estrutura de Dados 1 — UTFPR Campo Mourão.
+Trabalho desenvolvido por **Mateus Batichotti Silva** e **Arthur Vinicius Machado** para a disciplina de Algoritmos e Estrutura de Dados 1 — UTFPR Campo Mourão, ministrada por Rodrigo Hubner.

@@ -23,6 +23,7 @@ vector<int> readBinaryFile(const string& path) {
 }
 
 int main(int argc, char const *argv[]) {
+    // asm("wbinvd":::"memory");
     if (argc < 2) {
         cerr << "Uso: " << argv[0] << " <quantidade>\n";
         return 1;
