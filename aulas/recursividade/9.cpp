@@ -9,6 +9,7 @@ void print_stack(stack<int>& stk){
         stk.pop();
         print_stack(stk);
         cout << top << " ";
+        stk.push(top);
     } else return;
 }
 
