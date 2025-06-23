@@ -15,7 +15,6 @@ void permute(string &str, int pos, int swap_pos) {
     permute(str, pos, swap_pos + 1);
 }
 
-
 int main(int argc, char const *argv[]){
     string s;
     cin >> s;
