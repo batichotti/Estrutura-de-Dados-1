@@ -7,6 +7,10 @@ bool palindromo(string str,int left, int right){
     return (str[left] != str[right])?(false):(palindromo(str, left+1, right-1));
 }
 
+bool palindromo_hardcore(string str,int left, int right){
+    return (left >= right)?(true):((str[left] != str[right])?(false):(palindromo(str, left+1, right-1)));
+}
+
 int main(int argc, char const *argv[]){
     string s;
     cin >> s;
