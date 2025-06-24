@@ -21,6 +21,8 @@ void subconjuntos(int arr[], int n, int pos, int pos_swap){
     subconjuntos(arr, n, pos, pos_swap+1);
 }
 
+// Resolve com Fila
+
 int main(int argc, char const *argv[]){
     int arr[] = {1, 2, 3};
     int n = sizeof(arr) / sizeof(arr[0]);

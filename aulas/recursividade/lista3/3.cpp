@@ -15,9 +15,27 @@ void permute(string &str, int pos, int swap_pos) {
     permute(str, pos, swap_pos + 1);
 }
 
+void permutar(string& str, int ini);
+
+void troca(string& str, int ini, int i = 0){
+    swap(str[ini], str[i]); // troca o atual
+    permutar(str, ini+1); // permuta
+    swap(str[ini], str[i]); // backtracking
+    if (i < str.size()) return;
+    troca(str, ini, i+1);
+}
+
+void permutar(string& str, int ini = 0){
+    if (ini == str.size() - 1){
+        cout << str << endl;
+        return;
+    }
+    troca(str, ini);
+}
+
 int main(int argc, char const *argv[]){
     string s;
     cin >> s;
-    permute(s, 0, 0);
+    permutar(s, 0);
     return 0;
 }
