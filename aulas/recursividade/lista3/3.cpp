@@ -21,7 +21,7 @@ void troca(string& str, int ini, int i = 0){
     swap(str[ini], str[i]); // troca o atual
     permutar(str, ini+1); // permuta
     swap(str[ini], str[i]); // backtracking
-    if (i < str.size()) return;
+    if (i > str.size() - 1) return;
     troca(str, ini, i+1);
 }
 
