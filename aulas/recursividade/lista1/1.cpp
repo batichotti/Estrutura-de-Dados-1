@@ -9,7 +9,14 @@ void print_txt(std::string txt, int n){
     return;
 }
 
+void print_txt2(std::string txt, int n){
+    if (n > 0){
+        return print_txt(txt, --n);
+    }
+    std::cout << txt << std::endl;
+}
+
 int main(int argc, char const *argv[]){
-    print_txt("tottenham campeao da europa legue", 10);
+    print_txt2("tottenham campeao da europa legue", 10);
     return 0;
 }
