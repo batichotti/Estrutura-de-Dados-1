@@ -1,31 +1,30 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
-void print_array(int arr[], int n, int comeco = 0){
-    if(n <= comeco) return;
-    cout << arr[comeco];
-    print_array(arr, n, comeco+1);
+void print_vector(vector<int> vec, int i = 0){
+    if(i >= vec.size()) return;
+    cout << vec[i];
+    print_vector(vec, i+1);
 }
 
-void subconjuntos(int arr[], int n, int pos, int pos_swap){
-    if (pos == n-1){
-        print_array(arr, n);
-        cout << endl;
+void subconjuntos(vector<int> conjunto, vector<int> subconjunto, int n = 0){
+    if ( n >= conjunto.size() ){
+        cout << "{ ";
+        print_vector(subconjunto);
+        cout << " }" << endl;
         return;
     }
-    if (pos_swap >= n) return;
-    swap(arr[pos], arr[pos_swap]);
-    subconjuntos(arr, n, pos+1, pos_swap+1);
-    swap(arr[pos], arr[pos_swap]);
-    subconjuntos(arr, n, pos, pos_swap+1);
+
+    subconjuntos(conjunto, subconjunto, n+1);
+    subconjunto.push_back(conjunto[n]);
+    subconjuntos(conjunto, subconjunto, n+1);
 }
 
-// Resolve com Fila
-
 int main(int argc, char const *argv[]){
-    int arr[] = {1, 2, 3};
-    int n = sizeof(arr) / sizeof(arr[0]);
-    subconjuntos(arr, n, 0, 0);
+    vector<int> v = {1, 2, 3};
+    vector<int> v2;
+    subconjuntos(v, v2);
     return 0;
 }
