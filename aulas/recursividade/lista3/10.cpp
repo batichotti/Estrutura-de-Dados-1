@@ -11,6 +11,7 @@ bool palindromo_hardcore(string str, int left, int right) {
 }
 
 int main() {
+    cout << "L3 10 - ";
     string s;
     cin >> s;
 

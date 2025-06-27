@@ -11,8 +11,7 @@ void swap(list<int>& lst, list<int>::iterator a, list<int>::iterator b){
 
 void reverse(list<int>& lst, list<int>::iterator first, list<int>::iterator last){
     if (first == last || first == prev(last)) return;
-    --last;
-    swap(lst, first, last);
+    swap(lst, first, prev(last));
     reverse(lst, next(first), last);
 }
 

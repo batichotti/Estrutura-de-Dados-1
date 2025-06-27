@@ -72,25 +72,6 @@ long double bubbleSortOpt(vector<int>& vec, unsigned long long int& trocas) {
     return duracao.count();
 }
 
-// long double selectionSortOpt(vector<int>& vec){
-    // auto tempo_inicial = chrono::high_resolution_clock::now();
-    //     for(int i = 0; i < (int) vec.size(); i++){
-        //         int minidx = i;
-        
-        //         for(int j = i + 1; j < (int) vec.size(); j++){
-            //             if(vec[j] < vec[j - 1]) swap(vec[j], vec[j - 1]);
-            //             if(vec[j] < vec[minidx]) minidx = j;
-            //         }
-            
-            //         if(minidx != i) swap(vec[i], vec[minidx]);
-            //     }
-            
-            // auto tempo_final = chrono::high_resolution_clock::now();
-        
-            // chrono::duration<long double> duracao = tempo_final - tempo_inicial;
-            // return duracao.count();
-// }
-
 long double selectionSortOpt(vector<int>& vec, unsigned long long int& trocas) {
     Cronometro cronometro("Selection Sort Opt: ");
     auto start = chrono::high_resolution_clock::now();
