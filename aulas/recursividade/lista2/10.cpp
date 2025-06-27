@@ -2,18 +2,18 @@
 #include <list>
 using namespace std;
 
-bool palindrome(list<int>& lst, list<int>::iterator first, list<int>::iterator last){
-    if (*first != *last) return false;
+bool palindrome(list<int>& lst, list<int>::iterator first, list<int>::iterator last) {
     if (first == last) return true;
-    palindrome(lst, next(first), prev(last));
+    if (*first != *last) return false;
+    return palindrome(lst, next(first), prev(last));
 }
 
-int main(int argc, char const *argv[]){
-    list<int> lst = {1, 2, 3, 2, 1};
+int main() {
+    list<int> lst = {9, 1, 1, 1, 1, 17};
     if (palindrome(lst, lst.begin(), prev(lst.end()))) {
-        cout << "E palindromo" << endl;
+        cout << "SIM palíndromo" << endl;
     } else {
-        cout << "Nao e palindromo" << endl;
+        cout << "NAO palíndromo" << endl;
     }
     return 0;
 }
