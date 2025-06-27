@@ -4,7 +4,7 @@ using namespace std;
 float power(int base, int exp){
     if (exp == 0) return 1;
     if (exp == 1) return base;
-    if (exp < 0) return 1/(power(base, exp));
+    if (exp < 0) return 1/(power(base, -exp));
     return (exp%2)?(base * power(base, (int) exp/2) * power(base, (int) exp/2)):(power(base, (int) exp/2) * power(base, (int) exp/2)); 
 }
 
